@@ -1,11 +1,10 @@
 public class Librarian {
     /*
-    * The librarian should have a username
-    * The librarian should have a function to create and add a book to the library
+    * The librarian should have a username and a password
+    * The librarian should be able to search users, librarians and books
+    * The librarian should be able to add\remove\update user add\remove\update_
+    _ librarian and add\remove\update book
      */
 
 
-    public void createBook(){
-        //TODO
-    }
 }
