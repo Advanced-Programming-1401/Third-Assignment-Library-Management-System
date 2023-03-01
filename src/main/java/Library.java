@@ -7,7 +7,7 @@ public class Library {
      */
 
     public void addBook(){
-        //TODO:
+        //TODO
     }
 
     public void increaseBook(){
@@ -15,14 +15,14 @@ public class Library {
     }
 
     public void decreaseBook(){
-        //TODO:
+        //TODO
     }
 
     public void addUser(){
-        //TODO:
+        //TODO
     }
 
     public void addLibrarian(){
-        //TODO:
+        //TODO
     }
 }

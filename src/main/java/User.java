@@ -1,12 +1,12 @@
 public class User {
-    //user should have a list of books
-    //user should have a username
+    //User should have a list of books
+    //User should have a username
 
     public void rentBook(){
-        //TODO: rents a book
+        //TODO
     }
 
     public void returnBook(){
-        //TODO: return back the book
+        //TODO
     }
 }
