@@ -29,7 +29,7 @@ public class Library {
     }
 
     public void increaseBook(){
-        //TODO: search for the book name in list and increase the amount of book in the map
+        //TODO
     }
 
     public void decreaseBook(){
