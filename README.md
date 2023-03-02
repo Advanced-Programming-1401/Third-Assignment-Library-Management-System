@@ -18,7 +18,7 @@ In this assignment, you will create an object-oriented Java program that can man
     - Librarians to login, logout, add or delete books
 4. Your menu should allow new Users to create an account by providing a username and a password. Prevent new users choosing a previously taken username. Authenticate each user before logging in
 5. Your program should keep a list of all users (and the books they've borrowed), all librarians, and all books
-6. Commit your changes and push them to your own fork on Github
+6. Commit your changes and merge your branch into `main`. Push your commits to your own fork on Github
 
 ## Notes
 - The code provided in this repository gives you a template to work with and build your project. You are allowed to:
@@ -33,7 +33,7 @@ In this assignment, you will create an object-oriented Java program that can man
 - Your code should compile and run without any errors
 - Your code should be well-organized, readable, properly commented and follows clean code principles
 - Your code should follow OOP principles and correctly use Java access modifiers
-- You should use Git for version control and include meaningful commit messages
+- You should use Git for version control and include meaningful commit messages (The `main` branch will be used for evaluation)
 
 **Attention: Using ChatGPT or any other AI generative model for any section of the assignment will result in a score of 0 without any warnings.**
 
