@@ -1,4 +1,20 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class Library {
+
+    private ArrayList<Book> books;
+    private HashMap<Integer, Integer> map;   //map of book ISBNs with count
+    private ArrayList<User> users;
+    private ArrayList<Librarian> librarians;
+    public Library(){
+
+        books = new ArrayList<Book>();
+        map = new HashMap<Integer, Integer>();
+        users = new ArrayList<User>();
+        librarians = new ArrayList<Librarian>();
+    }
     /*
     * The library should have a list of books.
     * The library should have a map of books ISBNs which is linked to the amount of book
@@ -8,12 +24,23 @@ public class Library {
 
     //book related functions
 
-    public void addBook(){
-        //TODO
+    public void addBook(String book_name, String book_author, int publish_year, int ISBN){
+
+        Book new_book = new Book(book_name, book_author, publish_year, ISBN);
+        books.add(new_book);
+        increaseBook(ISBN);
     }
 
-    public void removeBook(){
-        //TODO
+    public void removeBook(int ISBN){
+
+
+        for (int i = 0; i < books.size(); i++){
+
+            if (books.get(i).getISBN() == ISBN){
+
+                books.remove(i);
+            }
+        }
     }
 
     public void searchBook(){
@@ -24,26 +51,52 @@ public class Library {
         //TODO
     }
 
-    public void doesBookExist(){
-        //TODO
+    public boolean doesBookExist(int ISBN){
+
+        if (map.containsKey(ISBN)) {
+
+            if (map.get(ISBN) != 0) {
+
+                return true;
+            }
+        }
+        return false;
     }
 
-    public void increaseBook(){
-        //TODO
+    public void increaseBook(int ISBN){
+
+        if (!map.containsKey(ISBN)){
+
+            map.put(ISBN, 1);
+        }
+        else
+        {
+            map.replace(ISBN, map.get(ISBN));
+        }
     }
 
-    public void decreaseBook(){
-        //TODO
+    public void decreaseBook(int ISBN){
+
+        map.replace(ISBN, map.get(ISBN) - 1);
     }
 
     //user related functions
 
-    public void addUser(){
-        //TODO
+    public void addUser(String user_name, String password){
+
+        User new_user = new User(user_name, password);
+        users.add(new_user);
     }
 
-    public void removeUser(){
-        //TODO
+    public void removeUser(String user_name){
+
+        for (int i = 0; i < users.size(); i++){
+
+            if (users.get(i).getUser_name().equals(user_name)){
+
+                users.remove(i);
+            }
+        }
     }
 
     public void searchUser(){
@@ -54,18 +107,35 @@ public class Library {
         //TODO
     }
 
-    public void doesUserExist(){
-        //TODO
+    public boolean doesUserExist(String user_name){
+
+        for (int i = 0; i < users.size(); i++){
+
+            if (users.get(i).getUser_name().equals(user_name)){
+
+                return true;
+            }
+        }
+        return false;
     }
 
     //librarian related functions
 
-    public void addLibrarian(){
-        //TODO
+    public void addLibrarian(String user_name, String password){
+
+        Librarian new_librarian = new Librarian(user_name, password);
+        librarians.add(new_librarian);
     }
 
-    public void removeLibrarian(){
-        //TODO
+    public void removeLibrarian(String user_name){
+
+        for (int i = 0; i < librarians.size(); i++){
+
+            if (librarians.get(i).getUser_name().equals(user_name)){
+
+                librarians.remove(i);
+            }
+        }
     }
 
     public void searchLibrarian(){
@@ -76,8 +146,16 @@ public class Library {
         //TODO
     }
 
-    public void doesLibrarianExist(){
-        //TODO
+    public boolean doesLibrarianExist(String user_name){
+
+        for (int i = 0; i < librarians.size(); i++){
+
+            if (librarians.get(i).getUser_name().equals(user_name)){
+
+                return true;
+            }
+        }
+        return false;
     }
 
 
