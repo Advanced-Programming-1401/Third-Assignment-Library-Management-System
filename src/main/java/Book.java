@@ -2,7 +2,7 @@ public class Book {
     private String book_name;
     private String book_author;
     private int publish_year;
-    private int ISBN;
+    private final int ISBN;
     public Book (String book_name, String book_author, int publish_year, int ISBN){
 
         this.book_name = book_name;

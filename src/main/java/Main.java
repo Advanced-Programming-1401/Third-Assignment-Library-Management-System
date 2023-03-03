@@ -2,21 +2,11 @@ import java.util.Scanner;
 
 public class Main {
     public static Scanner input = new Scanner(System.in);
-    /*
-    * make a functional library app using oop
-    * run the main program in Main.java and code the oop part in other classes
-    * don't forget to add at least 1 librarian to the library to make it functionable.
-    * *  *** don't limit yourself to our template ***
-     */
-
     public static void main(String[] args) {
 
         Library library = new Library();
-        library.addBook("raz bega", "mamad", 1900, 999887);
         runMenu(library);
-
     }
-
     public static void runMenu(Library library){
 
         System.out.println("Welcome, Please choose one option: ");
@@ -25,18 +15,21 @@ public class Main {
         input.nextLine();
 
         if (menu_option == 1){
-
+            //Sign up a new user
+            //first sign up and then go to LoggedIn page
             userLoggedInPage(library, userSignUp(library));
         }
         else if (menu_option == 2){
-
+            //Login as user
             userLogin(library);
         }
         else if (menu_option == 3){
-
+            //Login as librarian
+            //first login as librarian and then go to LoggedIn page
             librarianLoggedInPage(library, librarianLogin(library));
         }
         else if (menu_option == 4){
+            //Exit the program
             return;
         }
     }
@@ -67,6 +60,11 @@ public class Main {
 
             userLoggedInPage(library, user);
         }
+        else {
+
+            System.out.println("user_name or password is wrong try again!");
+            userLogin(library);
+        }
     }
     public static void userLoggedInPage(Library library, User user){
 
@@ -76,20 +74,20 @@ public class Main {
         input.nextLine();
 
         if (option_menu == 1){
-
+            //Show a list of books
             library.searchBook();
             userLoggedInPage(library, user);
         }
         else if (option_menu == 2){
-
+            //Borrow a book from library
             System.out.println("this doesn't work for now");
         }
         else if (option_menu == 3){
-
+            //Return a book to library
             System.out.println("this doesn't work for now");
         }
         else if (option_menu == 4) {
-
+            //Back to main menu
             runMenu(library);
         }
     }
@@ -101,6 +99,11 @@ public class Main {
         if (library.checkLibrarianPassword(librarian.getUser_name(), librarian.getPassword())){
 
             return librarian;
+        }
+        else {
+
+            System.out.println("user_name or password is wrong, Try again!");
+            librarianLogin(library);
         }
         return null;
     }
@@ -141,7 +144,9 @@ public class Main {
             }
             else if (option_menu == 4){
                 //Update a book
-                System.out.println("this still needs a little bit work");
+                System.out.println("Enter desired information: 1-previous name of the book, 2-new name of the book, 3-new author of the book, 4-new year of publication\n");
+                library.updateBook(input.nextLine(), input.nextLine(), input.nextLine(), input.nextInt());
+                input.nextLine();
             }
         }
         else if (option_menu == 2){
@@ -164,6 +169,11 @@ public class Main {
                 System.out.println("Enter the name of the user: \n");
                 library.removeUser(input.nextLine());
             }
+            else if (option_menu == 4){
+                //Update a user
+                System.out.println("Enter desired information: 1-previous user_name, 2-new user_name, 3-new password");
+                library.updateUser(input.nextLine(), input.nextLine(), input.nextLine());
+            }
         }
         else if (option_menu == 3){
             //Show a list of librarian related commands
@@ -178,7 +188,7 @@ public class Main {
             else if (option_menu == 2){
                 //Add a librarian
                 System.out.println("Enter desired information: 1-user_name, 2-password\n");
-                library.addUser(input.nextLine(), input.nextLine());
+                library.addLibrarian(input.nextLine(), input.nextLine());
             }
             else if (option_menu == 3){
                 //Remove a librarian
@@ -187,14 +197,15 @@ public class Main {
             }
             else if (option_menu == 4){
                 //Update a librarian
-                //this needs a little work
+                System.out.println("Enter desired information: 1-previous user_name, 2-new user_name, 3-new password");
+                library.updateLibrarian(input.nextLine(), input.nextLine(), input.nextLine());
             }
         }
         else if (option_menu == 4) {
-
+            //Back to main menu
             runMenu(library);
             return;
         }
-        librarianLoggedInPage(library, librarian);
+        librarianLoggedInPage(library, librarian);  //get back to the LoggedIn page
     }
 }
