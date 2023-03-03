@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-
 public class Library {
 
     private ArrayList<Book> books;
-    private HashMap<Integer, Integer> map;   //map of book ISBNs with count
+    private HashMap<Integer, Integer> map;   //map ISBNs along with it's amount
     private ArrayList<User> users;
     private ArrayList<Librarian> librarians;
+    private Librarian default_librarian;
     public Library(){
 
         books = new ArrayList<Book>();
         map = new HashMap<Integer, Integer>();
         users = new ArrayList<User>();
         librarians = new ArrayList<Librarian>();
+        default_librarian = new Librarian("mmd", "2385");
     }
     /*
     * The library should have a list of books.
@@ -33,18 +33,23 @@ public class Library {
 
     public void removeBook(int ISBN){
 
-
         for (int i = 0; i < books.size(); i++){
 
             if (books.get(i).getISBN() == ISBN){
 
                 books.remove(i);
+                map.remove(ISBN);
             }
         }
     }
 
     public void searchBook(){
-        //TODO
+
+        System.out.println("List Of Books: ");
+        for (int i = 0; i < books.size(); i++){
+
+            System.out.println("Name: " + books.get(i).getBook_name() + ", "  + " amount: " + map.get(books.get(i).getISBN()) + ", "  + " author: " + books.get(i).getBook_author() + ", "  + " publish year: " + books.get(i).getPublish_year());
+        }
     }
 
     public void updateBook(){
@@ -87,6 +92,11 @@ public class Library {
         User new_user = new User(user_name, password);
         users.add(new_user);
     }
+    public void addUser(User new_user){
+
+
+        users.add(new_user);
+    }
 
     public void removeUser(String user_name){
 
@@ -100,7 +110,8 @@ public class Library {
     }
 
     public void searchUser(){
-        //TODO
+
+        System.out.println("List Of Users: " + users);
     }
 
     public void updateUser(){
@@ -114,6 +125,19 @@ public class Library {
             if (users.get(i).getUser_name().equals(user_name)){
 
                 return true;
+            }
+        }
+        return false;
+    }
+    public boolean checkUserPassword(String user_name, String password){
+
+        for (int i = 0; i < users.size(); i++){
+
+            if (users.get(i).getUser_name().equals(user_name)){
+                if (users.get(i).getUser_password().equals(password)){
+
+                    return true;
+                }
             }
         }
         return false;
@@ -139,7 +163,8 @@ public class Library {
     }
 
     public void searchLibrarian(){
-        //TODO
+
+        System.out.println("List Of Librarians: " + librarians);
     }
 
     public void updateLibrarian(){
@@ -157,6 +182,4 @@ public class Library {
         }
         return false;
     }
-
-
 }

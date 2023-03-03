@@ -11,6 +11,15 @@ public class Book {
         this.ISBN = ISBN;
     }
 
+    public String getBook_name() {
+        return book_name;
+    }
+    public String getBook_author() {
+        return book_author;
+    }
+    public int getPublish_year() {
+        return publish_year;
+    }
     public int getISBN() {
         return ISBN;
     }
