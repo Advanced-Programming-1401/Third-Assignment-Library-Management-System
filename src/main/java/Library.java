@@ -14,6 +14,7 @@ public class Library {
         users = new ArrayList<User>();
         librarians = new ArrayList<Librarian>();
         default_librarian = new Librarian("mmd", "2385");
+        librarians.add(default_librarian);
     }
     /*
     * The library should have a list of books.
@@ -48,7 +49,7 @@ public class Library {
         System.out.println("List Of Books: ");
         for (int i = 0; i < books.size(); i++){
 
-            System.out.println("Name: " + books.get(i).getBook_name() + ", "  + " amount: " + map.get(books.get(i).getISBN()) + ", "  + " author: " + books.get(i).getBook_author() + ", "  + " publish year: " + books.get(i).getPublish_year());
+            System.out.println("Name: " + books.get(i).getBook_name() + ", "  + " amount: " + map.get(books.get(i).getISBN()) + ", "  + " author: " + books.get(i).getBook_author() + ", "  + " publish year: " + books.get(i).getPublish_year() + "\n");
         }
     }
 
@@ -111,7 +112,12 @@ public class Library {
 
     public void searchUser(){
 
-        System.out.println("List Of Users: " + users);
+        System.out.print("A list of users: ");
+        for (int i = 0; i < users.size(); i++){
+
+            System.out.print(users.get(i).getUser_name() + "  ");
+        }
+        System.out.print("\n\n");
     }
 
     public void updateUser(){
@@ -178,6 +184,19 @@ public class Library {
             if (librarians.get(i).getUser_name().equals(user_name)){
 
                 return true;
+            }
+        }
+        return false;
+    }
+    public boolean checkLibrarianPassword(String user_name, String password){
+
+        for (int i = 0; i < librarians.size(); i++){
+
+            if (librarians.get(i).getUser_name().equals(user_name)){
+                if (librarians.get(i).getPassword().equals(password)){
+
+                    return true;
+                }
             }
         }
         return false;

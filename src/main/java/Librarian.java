@@ -12,4 +12,7 @@ public class Librarian {
         return user_name;
     }
 
+    public String getPassword() {
+        return password;
+    }
 }
