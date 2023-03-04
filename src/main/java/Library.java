@@ -19,6 +19,25 @@ public class Library {
 
     //book related functions
 
+    public Book getBook(String book_name){
+
+        for (int i = 0; i < books.size(); i++){
+            if (books.get(i).getBook_name().equals(book_name)){
+                return books.get(i);
+            }
+        }
+        return null;
+    }
+    public Book getBook(int ISBN){
+
+        for (int i = 0; i < books.size(); i++){
+            if (books.get(i).getISBN() == ISBN){
+                return books.get(i);
+            }
+        }
+        return null;
+    }
+
     public void addBook(String book_name, String book_author, int publish_year, int ISBN){
 
         Book new_book = new Book(book_name, book_author, publish_year, ISBN);
@@ -40,9 +59,15 @@ public class Library {
     public void searchBook(){
 
         System.out.println("List Of Books: ");
-        for (int i = 0; i < books.size(); i++){
+        if (books.size() == 0){
 
-            System.out.println("Name: " + books.get(i).getBook_name() + ", "  + " amount: " + map.get(books.get(i).getISBN()) + ", "  + " author: " + books.get(i).getBook_author() + ", "  + " publish year: " + books.get(i).getPublish_year() + "\n");
+            System.out.print("Library is empty...\n\n");
+        }
+        else {
+            for (int i = 0; i < books.size(); i++){
+
+                System.out.println("Name: " + books.get(i).getBook_name() + ", "  + " amount: " + map.get(books.get(i).getISBN()) + ", "  + " author: " + books.get(i).getBook_author() + ", "  + " publish year: " + books.get(i).getPublish_year() + "\n");
+            }
         }
     }
 
@@ -58,10 +83,20 @@ public class Library {
 
     }
     public boolean doesBookExist(int ISBN){
-
+        //search by ISBN of the book
         if (map.containsKey(ISBN)) {
             if (map.get(ISBN) != 0) {
 
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean doesBookExist(String book_name){
+        //search by name of the book
+        for (int i = 0; i < books.size(); i++){
+            if (books.get(i).getBook_name().equals(book_name) && map.get(books.get(i).getISBN()) > 0){
+                //the books exist already, and we have the permission to book
                 return true;
             }
         }
@@ -78,11 +113,30 @@ public class Library {
             map.replace(ISBN, map.get(ISBN) + 1);
         }
     }
+    public void increaseBook(String book_name){
+
+        for (int i = 0; i < books.size(); i++){
+            if (books.get(i).getBook_name().equals(book_name)){
+
+                map.replace(books.get(i).getISBN(), map.get(books.get(i).getISBN()) + 1);
+            }
+        }
+    }
+
     public void decreaseBook(int ISBN){
 
         map.replace(ISBN, map.get(ISBN) - 1);
     }
 
+    public void decreaseBook(String book_name){
+
+        for (int i = 0; i < books.size(); i++){
+            if (books.get(i).getBook_name().equals(book_name)){
+                //decrease the amount of book by one
+                map.replace(books.get(i).getISBN(), map.get(books.get(i).getISBN()) - 1);
+            }
+        }
+    }
     //user related functions
 
     public void addUser(String user_name, String password){
