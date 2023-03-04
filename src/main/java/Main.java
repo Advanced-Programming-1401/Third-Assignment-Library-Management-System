@@ -78,8 +78,7 @@ public class Main {
         }
     }
     public static void userPage(Library library, User user){
-
-//        System.out.println("USERS PAGE\n\n" + "Welcome Back " + user.getUser_name().toUpperCase() + "!\n");
+        //entering users page
         System.out.println("1- ُShow list of books\n2- Borrow a book\n3- Return a book\n4- Show a list of borrowed books\n5- Back to Main menu\n");
         int option_menu = input.nextInt();
         input.nextLine();
@@ -133,9 +132,16 @@ public class Main {
                 user.searchBorrowedBooks();
                 System.out.println("Now, which one you want to return back?");
                 String book_name = input.nextLine();
-                library.increaseBook(book_name);
-                user.removeFromBorrowedBooks(book_name);
-                System.out.println("you have successfully returned " + book_name + " to the library\n");
+                if (user.hasBookBorrowed(book_name)){
+
+                    library.increaseBook(book_name);
+                    user.removeFromBorrowedBooks(book_name);
+                    System.out.println("you have successfully returned " + book_name + " to the library\n");
+                }
+                else{
+
+                    System.out.println("Bro are you kidding me?. you haven't even borrowed this book how do you want to return it back?\n");
+                }
             }
             userPage(library, user);
         }

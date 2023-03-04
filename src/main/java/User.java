@@ -55,4 +55,13 @@ public class User {
         }
         System.out.print("\n\n");
     }
+    public boolean hasBookBorrowed(String book_name){
+        for (int i = 0; i < borrowed_books.size(); i++){
+            if (borrowed_books.get(i).getBook_name().equals(book_name)){
+
+                return true;
+            }
+        }
+        return false;
+    }
 }
