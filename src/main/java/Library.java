@@ -1,203 +1,234 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
+
 public class Library {
 
-    private ArrayList<Book> books;           //list of our books
-    private HashMap<Integer, Integer> map;   //map ISBNs along with it's amount
-    private ArrayList<User> users;           //list of users
-    private ArrayList<Librarian> librarians; //list of librarians
-    private Librarian default_librarian;
-    public Library() {
+    private ArrayList<Book> books;
+    private ArrayList<User> users;
+    private ArrayList<Librarian> librarians;
+    private HashMap<String, Integer> book_maps;
 
-        books = new ArrayList<Book>();
-        map = new HashMap<Integer, Integer>();
-        users = new ArrayList<User>();
-        librarians = new ArrayList<Librarian>();
-        default_librarian = new Librarian("Mobin", "Elite20");
-        librarians.add(default_librarian);
+    //Constructor
+    public Library(){
+
+        this.books = new ArrayList<Book>();
+        this.users = new ArrayList<User>();
+        this.librarians = new ArrayList<Librarian>();
+        this.book_maps = new HashMap<String, Integer>();
+
+        //default librarian
+        Librarian default_librarian = new Librarian("Mobin Nesari", "1381");
+        this.librarians.add(default_librarian);
     }
 
-    //book related functions
+    //getter methods
+    public ArrayList<Book> getBooks() {
+        return this.books;
+    }
 
-    public Book getBook(String book_name){
+    public ArrayList<User> getUsers() {
+        return this.users;
+    }
 
-        for (int i = 0; i < books.size(); i++){
-            if (books.get(i).getBook_name().equals(book_name)){
-                return books.get(i);
+    public ArrayList<Librarian> getLibrarians() {
+        return this.librarians;
+    }
+
+    public HashMap<String, Integer> getBook_maps() {
+        return this.book_maps;
+    }
+
+    public Book getSpecifiedBook (String book_name){
+
+        for (Book book : this.books){
+
+            if (book.getBook_name().equals(book_name)){
+
+                return book;
             }
         }
         return null;
     }
-    public Book getBook(int ISBN){
+    public User getSpecifiedUser (String username){
 
-        for (int i = 0; i < books.size(); i++){
-            if (books.get(i).getISBN() == ISBN){
-                return books.get(i);
+        for (User user :  this.users){
+
+            if (user.getUsername().equals(username)){
+                return user;
             }
         }
         return null;
     }
 
-    public void addBook(String book_name, String book_author, int publish_year, int ISBN){
+    public Librarian getSpecifiedLibrarian (String username){
 
-        Book new_book = new Book(book_name, book_author, publish_year, ISBN);
-        books.add(new_book);
+        for (Librarian librarian : this.librarians){
+
+            if (librarian.getUsername().equals(username)){
+                return librarian;
+            }
+        }
+        return null;
+    }
+
+
+    //book - related functions
+
+    public void addBook(String book_name, String author, String publish_year, String ISBN){
+        //add a new book to library
+        Book new_book = new Book(book_name, author, publish_year, ISBN);
+        this.books.add(new_book);
         increaseBook(ISBN);
+        System.out.println("Book has been successfully added to library");
     }
 
-    public void removeBook(int ISBN){
+    public void removeBook(String book_name){
+        //remove a special book from library
+        for (int i = 0; i < this.books.size(); i++){
 
-        for (int i = 0; i < books.size(); i++){
-            if (books.get(i).getISBN() == ISBN){
+            if (books.get(i).getBook_name().equals(book_name)){
 
+                book_maps.remove(books.get(i).getISBN());
                 books.remove(i);
-                map.remove(ISBN);
             }
         }
+        System.out.println("Book has been successfully removed");
+//        for (Book book : this.books){
+
+//            if (book.getBook_name().equals(book_name)){
+//
+//                this.book_maps.remove(book.getISBN());
+//                this.books.remove(book);
+//            }
+//        }
     }
 
     public void searchBook(){
+        //Shows a list of books or a message that says library is empty
+        if (this.books.size() == 0){
 
-        System.out.println("List Of Books: ");
-        if (books.size() == 0){
-
-            System.out.print("Library is empty...\n\n");
+            System.out.println("Library is vacant of books\n");
         }
         else {
-            for (int i = 0; i < books.size(); i++){
 
-                System.out.println("Name: " + books.get(i).getBook_name() + ", "  + " amount: " + map.get(books.get(i).getISBN()) + ", "  + " author: " + books.get(i).getBook_author() + ", "  + " publish year: " + books.get(i).getPublish_year() + "\n");
+            System.out.println("List Of Books:\n");
+
+            for (Book book : this.books){
+
+                System.out.println("Name Of The Book: " + book.getBook_name() + ", Author: " + book.getAuthor() + ", Amount: " + this.book_maps.get(book.getISBN()) + ", Year Of Publication: " + book.getPublish_year() + ", ISBN Of The Book: " + book.getISBN());
+
             }
         }
     }
 
-    public void updateBook(String previous_book_name,String new_book_name, String new_author, int new_publish_year){
-        //because ISBN of a book is constant we don't touch it and there is also need to make any changes in map
-        for (int i = 0; i < books.size(); i++){
-            if (books.get(i).getBook_name().equals(previous_book_name)){
+    public void updateBook(String ISBN, String new_book_name, String new_author, String new_publish_year){
+        //Update information of a book
+        for (Book book : this.books){
 
-                Book updated_book = new Book(new_book_name, new_author, new_publish_year, books.get(i).getISBN());
-                books.set(i, updated_book);
+            if (book.getISBN().equals(ISBN)){
+
+                book.setBook_name(new_book_name);
+                book.setAuthor(new_author);
+                book.setPublish_year(new_publish_year);
             }
         }
-
+        System.out.println("Book has been successfully updated");
     }
-    public boolean doesBookExist(int ISBN){
-        //search by ISBN of the book
-        if (map.containsKey(ISBN)) {
-            if (map.get(ISBN) != 0) {
 
-                return true;
-            }
-        }
-        return false;
-    }
     public boolean doesBookExist(String book_name){
-        //search by name of the book
-        for (int i = 0; i < books.size(); i++){
-            if (books.get(i).getBook_name().equals(book_name) && map.get(books.get(i).getISBN()) > 0){
-                //the books exist already, and we have the permission to book
+        //Check if a book exist or not
+        for (Book book : this.books){
+
+            if (book.getBook_name().equals(book_name) && book_maps.get(book.getISBN()) > 0){
                 return true;
             }
         }
         return false;
     }
-    public void increaseBook(int ISBN){
 
-        if (!map.containsKey(ISBN)){
+    public void increaseBook(String ISBN){
+        //increase amount by one
+        if (!book_maps.containsKey(ISBN)){
 
-            map.put(ISBN, 1);
+            book_maps.put(ISBN, 1);
         }
-        else
-        {
-            map.replace(ISBN, map.get(ISBN) + 1);
-        }
-    }
-    public void increaseBook(String book_name){
+        else {
 
-        for (int i = 0; i < books.size(); i++){
-            if (books.get(i).getBook_name().equals(book_name)){
-
-                map.replace(books.get(i).getISBN(), map.get(books.get(i).getISBN()) + 1);
-            }
+            book_maps.replace(ISBN, book_maps.get(ISBN) + 1);
         }
+        System.out.println("Amount has been successfully increased");
     }
 
-    public void decreaseBook(int ISBN){
-
-        map.replace(ISBN, map.get(ISBN) - 1);
+    public void decreaseBook(String ISBN){
+        //decrease amount by one
+        book_maps.replace(ISBN, book_maps.get(ISBN) - 1);
+        System.out.println("Amount has been successfully decreased");
     }
 
-    public void decreaseBook(String book_name){
-
-        for (int i = 0; i < books.size(); i++){
-            if (books.get(i).getBook_name().equals(book_name)){
-                //decrease the amount of book by one
-                map.replace(books.get(i).getISBN(), map.get(books.get(i).getISBN()) - 1);
-            }
-        }
-    }
     //user related functions
 
-    public void addUser(String user_name, String password){
+    public void addUser(String username, String password){
+        //adds a user to list of users
+        User new_user = new User(username, password);
+        this.users.add(new_user);
 
-        User new_user = new User(user_name, password);
-        users.add(new_user);
+        System.out.println("User " + username + " has been successfully added\n");
     }
-    public void addUser(User new_user){
 
-        users.add(new_user);
+    public void removeUser(String username){
+        //removes a user from list of users
+        this.users.removeIf(user -> user.getUsername().equals(username));
+        System.out.println("User has been successfully removed");
     }
-    public void removeUser(String user_name){
 
-        for (int i = 0; i < users.size(); i++){
-            if (users.get(i).getUser_name().equals(user_name)){
-
-                users.remove(i);
-            }
-        }
-    }
     public void searchUser(){
+        //Shows a list of users or a message says that users list is empty
+        if (this.users.size() == 0){
 
-        System.out.print("A list of users: ");
-        for (int i = 0; i < users.size(); i++){
-
-            System.out.print(users.get(i).getUser_name());
-            if (i != (users.size() - 1)){
-
-                System.out.print(",  ");
-            }
+            System.out.println("Users list is empty!");
         }
-        System.out.print("\n\n");
-    }
-    public void updateUser(String previous_user_name, String new_user_name, String new_password){
+        else {
 
-        for (int i = 0; i < users.size(); i++){
-            if (users.get(i).getUser_name().equals(previous_user_name)){
+            System.out.println("A list of users:\n");
+            for (User user : this.users){
 
-                User updated_user = new User(new_user_name, new_password);
-                users.set(i, updated_user);
+                System.out.println("Username: " + user.getUsername() + ", Password: " + user.getPassword());
             }
         }
     }
-    public boolean doesUserExist(String user_name){
 
-        for (int i = 0; i < users.size(); i++){
-            if (users.get(i).getUser_name().equals(user_name)){
+    public void updateUser(String old_username, String new_username, String new_password){
+        //updates information of a special user
+        for (User user : this.users){
+
+            if (user.getUsername().equals(old_username)){
+
+                user.setUsername(new_username);
+                user.setPassword(new_password);
+            }
+        }
+        System.out.println("User has been successfully updated");
+    }
+
+    public boolean doesUserExist(String username){
+        //Checks if a user exists
+        for (User user : this.users){
+
+            if (user.getUsername().equals(username)){
 
                 return true;
             }
         }
         return false;
     }
-    public boolean checkUserPassword(String user_name, String password){
 
-        for (int i = 0; i < users.size(); i++){
-            if (users.get(i).getUser_name().equals(user_name)){
-                if (users.get(i).getUser_password().equals(password)){
+    public boolean isUserValid(String username, String password){
+        //checks if this user is valid or not
+        for (User user : this.users){
 
-                    return true;
-                }
+            if (user.getUsername().equals(username) && user.getPassword().equals(password)){
+                return true;
             }
         }
         return false;
@@ -205,62 +236,64 @@ public class Library {
 
     //librarian related functions
 
-    public void addLibrarian(String user_name, String password){
-
-        Librarian new_librarian = new Librarian(user_name, password);
-        librarians.add(new_librarian);
+    public void addLibrarian(String username, String password){
+        //adds a new librarian to the librarians list
+        Librarian new_librarian = new Librarian(username, password);
+        this.librarians.add(new_librarian);
+        System.out.println("Librarian has been successfully added");
     }
 
-    public void removeLibrarian(String user_name){
-
-        for (int i = 0; i < librarians.size(); i++){
-            if (librarians.get(i).getUser_name().equals(user_name)){
-
-                librarians.remove(i);
-            }
-        }
+    public void removeLibrarian(String username){
+        //removes a special librarian
+        this.librarians.removeIf(librarian -> librarian.getUsername().equals(username));
+        System.out.println("librarian has been successfully removed");
     }
+
     public void searchLibrarian(){
-
-        System.out.print("List of librarians: ");
-        for (int i = 0; i < librarians.size(); i++){
-
-            System.out.print(librarians.get(i).getUser_name());
-            if (i != (librarians.size() - 1)){
-
-                System.out.print(",  ");
-            }
+        //Shows a list of librarians or a message says that librarians list is empty!
+        if (this.librarians.size() == 0){
+            System.out.println("Librarians list is vacant!");
         }
-        System.out.print("\n");
-    }
-    public void updateLibrarian(String previous_user_name, String new_user_name, String new_password){
+        else {
 
-        for (int i = 0; i < librarians.size(); i++){
-            if (librarians.get(i).getUser_name().equals(previous_user_name)){
+            System.out.println("A list of librarians:");
+            for (Librarian librarian : this.librarians){
 
-                Librarian updated_librarian = new Librarian(new_user_name, new_password);
-                librarians.set(i, updated_librarian);
+                System.out.println("Username: " + librarian.getUsername() + ", Password: " + librarian.getPassword());
             }
         }
     }
-    public boolean doesLibrarianExist(String user_name){
 
-        for (int i = 0; i < librarians.size(); i++){
-            if (librarians.get(i).getUser_name().equals(user_name)){
+    public void updateLibrarian(String old_username, String new_username, String new_password){
+        //Updates information for a special librarian
+        for (Librarian librarian : this.librarians){
 
+            if (librarian.getUsername().equals(old_username)){
+
+                librarian.setUsername(new_username);
+                librarian.setPassword(new_password);
+            }
+        }
+        System.out.println("Librarian has been successfully updated");
+    }
+
+    public boolean doesLibrarianExist(String username){
+        //Checks if a special librarian exists
+        for (Librarian librarian : this.librarians){
+
+            if (librarian.getUsername().equals(username)){
                 return true;
             }
         }
         return false;
     }
-    public boolean checkLibrarianPassword(String user_name, String password){
 
-        for (int i = 0; i < librarians.size(); i++){
-            if (librarians.get(i).getUser_name().equals(user_name)){
-                if (librarians.get(i).getPassword().equals(password)){
+    public boolean isLibrarianValid (String username, String password){
+        //Checks if librarians is valid
+        for (Librarian librarian : this.librarians){
 
-                    return true;
-                }
+            if (librarian.getUsername().equals(username) && librarian.getPassword().equals(password)){
+                return true;
             }
         }
         return false;
