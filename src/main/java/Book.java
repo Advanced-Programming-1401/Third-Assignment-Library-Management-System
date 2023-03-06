@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Book {
+public class Book /*extends Library*/ {
     //Book should contain name,author,year of publish and ISBN
 
        private int YearPublish, ISBN ;
@@ -39,12 +39,28 @@ public class Book {
         return author;
     }
 
+    public int getYearPublish() {
+        return YearPublish;
+    }
+
     public int getISBN() {
         return ISBN;
     }
 
-    public int getYearPublish() {
-        return YearPublish;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setYearPublish(int yearPublish) {
+        YearPublish = yearPublish;
+    }
+
+    public void setISBN(int ISBN) {
+        this.ISBN = ISBN;
     }
 
     @Override

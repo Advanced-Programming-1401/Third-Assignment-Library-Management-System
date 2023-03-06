@@ -10,9 +10,9 @@ public class Library  extends Book{
     * The library should have a list of users and a list of librarians.
      */
     static Scanner input = new Scanner(System.in);
-    private ArrayList<Book> BookList= new ArrayList<Book>();
-    private ArrayList<User> UserList = new ArrayList<User>();
-    private ArrayList<Librarian> LibrarianList = new ArrayList<Librarian>();
+    private ArrayList <Book> BookList= new ArrayList<Book>();
+    private ArrayList <User> UserList = new ArrayList<User>();
+    private ArrayList <Librarian> LibrarianList = new ArrayList<Librarian>();
     String booksearch;
     public Library(){
 
@@ -35,9 +35,24 @@ public class Library  extends Book{
     }
 
 
-    public void removeBook(Book book){
+    public void removeBook(int ISBN){
         //TODO
-        BookList.remove(book);
+
+        boolean successful = false;
+        for (int i=0;i<BookList.size();i++)
+        {
+            if((int)BookList.get(i).getISBN()==ISBN)
+            {
+                BookList.remove(i);
+                System.out.println("Book removal successful");
+                successful=true;
+            }
+        }
+
+        if (!successful)
+        {
+            System.out.println("Could not remove book "+ ISBN );
+        }
     }
 
     public Book searchBook(){
@@ -47,7 +62,7 @@ public class Library  extends Book{
         booksearch = input.nextLine();
         for (Book book : BookList)
         {
-            if (book.getName().contains(booksearch) || book.getAuthor().contains(booksearch)
+            if (book.getName().contains(booksearch) || book.getAuthor().contains(booksearch))
             {
                 return book;
             }
@@ -56,12 +71,19 @@ public class Library  extends Book{
 
     }
 
-    public void updateBook(Book book){
+    public void updateBook(String UpdateName , String UpdateAuthor ,int UpdateYear , int UpdateISBN){
         //TODO
+        Book book = null;
+        book.setName(UpdateName);
+        book.setAuthor(UpdateAuthor);
+        book.setYearPublish(UpdateYear);
+        book.setISBN(UpdateISBN);
     }
 
     public void doesBookExist(Book book){
         //TODO
+
+
     }
 
     public void increaseBook(Book book){
