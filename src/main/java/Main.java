@@ -23,17 +23,14 @@ public class Main {
                 //Signing up a new user
                 userSignUp(library);
                 runMenu(library);
-                break;
             }
             case 2 -> {
                 //Login as a user
                 userLogin(library);
-                break;
             }
             case 3 -> {
                 //Login as a librarian
                 librarianLogin(library);
-                break;
             }
         }
     }
@@ -45,13 +42,13 @@ public class Main {
         String password = input.nextLine();
 
         if (!library.doesUserExist(username)){
-
+            //checks if a user doesn't exist then add it
             library.addUser(username, password);
         }
         else {
-
+            //if user exists we don't have the permission to add it
             System.out.println("This user is already exist.");
-            runMenu(library);
+            runMenu(library);   //back to the main menu
         }
     }
 
@@ -62,14 +59,14 @@ public class Main {
         String password = input.nextLine();
 
         if (library.isUserValid(username, password)){
-
+            //checks if username and password is valid then login
             System.out.println("User " + username + " has been successfully Login");
             userPage(library, library.getSpecifiedUser(username));
         }
         else {
-
+            //if username or password is invalid we cannot log in
             System.out.println("Username or password is wrong.");
-            runMenu(library);
+            runMenu(library);   //back to the main menu
         }
     }
 
@@ -85,8 +82,7 @@ public class Main {
             case 1 -> {
                 //Show a list of books
                 library.searchBook();
-                userPage(library, user);
-                break;
+                userPage(library, user);    //back to the user page
             }
             case 2 -> {
                 //Borrow a book from library
@@ -98,19 +94,15 @@ public class Main {
                     library.decreaseBook(library.getSpecifiedBook(book_name).getISBN());
                     user.rentBook(library.getSpecifiedBook(book_name));
                 } else {
-
+                    //if books doesn't exist in library we cannot borrow that
                     System.out.println("Book doesn't exist in library or you have borrowed that before.");
                 }
-                userPage(library, user);
-
-                break;
+                userPage(library, user);    //back to the user page
             }
             case 3 -> {
                 //Show a list of borrowed books
                 user.showBorrowedBooks();
-                userPage(library, user);
-
-                break;
+                userPage(library, user);    //back to the user's page
             }
             case 4 -> {
                 //Return a book
@@ -125,21 +117,19 @@ public class Main {
                     String book_name = input.nextLine();
 
                     if (user.hasRentedBook(book_name)) {
-
+                        //checks if we rented this book
                         user.returnBook(library.getSpecifiedBook(book_name));
                         library.increaseBook(library.getSpecifiedBook(book_name).getISBN());
                     } else {
-
+                        //if we didn't borrow this book, yet we don't have permission to return it
                         System.out.println("You haven't rent this book yet, so you cannot return it!");
                     }
                 }
-                userPage(library, user);
-                break;
+                userPage(library, user);    //back to user's page
             }
             case 5 -> {
                 //Back to main menu
                 runMenu(library);
-                break;
             }
         }
     }
@@ -156,9 +146,9 @@ public class Main {
             librarianPage(library, library.getSpecifiedLibrarian(username));
         }
         else {
-
+            //if username or password is invalid we don't have the permission to log in
             System.out.println("Username or Password is invalid.");
-            runMenu(library);
+            runMenu(library);   //back to main menu
         }
     }
 
@@ -181,55 +171,39 @@ public class Main {
                     case 1 -> {
                         //show a list of books
                         library.searchBook();
-                        librarianPage(library, librarian);
-                        break;
-                    }
+                        librarianPage(library, librarian);  //back to librarian's page
+                   }
                     case 2 -> {
                         //Add a book to library
                         System.out.println("Enter requested information --> 1-Name of the book,  2-Author,  3-Year of publish,  4-ISBN");
-                        String book_name = input.nextLine();
-                        String author = input.nextLine();
-                        String publish_year = input.nextLine();
-                        String ISBN = input.nextLine();
 
-                        if (library.doesBookExist(book_name)) {
-                            library.increaseBook(ISBN);
+                        Book new_book = new Book(input.nextLine(), input.nextLine(), input.nextLine(), input.nextLine());
+                        if (library.doesBookExist(new_book.getBook_name())) {
+                            //if book already exists in library, just increase its amount
+                            library.increaseBook(new_book.getISBN());
                         } else {
-
-                            library.addBook(book_name, author, publish_year, ISBN);
+                            //if book doesn't exist we have to add it first
+                            library.addBook(new_book.getBook_name(), new_book.getAuthor(), new_book.getPublish_year(), new_book.getISBN());
                         }
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                     case 3 -> {
                         //remove a book from library
                         System.out.println("Enter name of the book:");
                         library.removeBook(input.nextLine());
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                     case 4 -> {
                         //Update a book
                         System.out.println("Enter required information --> 1-ISBN of the book, 2-New name of the book, 3-New author of the book,  3-New year of publish");
-                        String ISBN = input.nextLine();
-                        String new_book_name = input.nextLine();
-                        String new_author = input.nextLine();
-                        String new_publish_year = input.nextLine();
-
-                        library.updateBook(ISBN, new_book_name, new_author, new_publish_year);
-                        librarianPage(library, librarian);
-
-                        break;
+                        Book book = new Book(input.nextLine(), input.nextLine(), input.nextLine(), input.nextLine());
+                        library.updateBook(book.getISBN(), book.getBook_name(), book.getAuthor(), book.getPublish_year());
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                 }
-
-                break;
             }
             case 2 -> {
                 //Show a list of user - related commands
-
                 System.out.println("1- Show a list of users\n2- Add a user\n3- Remove a user\n4- Update a user\n");
                 option_menu = input.nextInt();
                 input.nextLine();
@@ -238,50 +212,44 @@ public class Main {
                     case 1 -> {
                         //show a list of users
                         library.searchUser();
-                        librarianPage(library, librarian);
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                     case 2 -> {
                         //Add a user
                         System.out.println("Enter required information --> 1-Username,  2-Password");
                         User new_user = new User(input.nextLine(), input.nextLine());
-                        if (library.doesUserExist(new_user.getUsername())) {
 
+                        if (library.doesUserExist(new_user.getUsername())) {
+                            //if this username already exist we cannot add it.
                             System.out.println("This username exist already!");
                         } else {
-
+                            //else we can add it
                             library.addUser(new_user.getUsername(), new_user.getPassword());
                         }
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                     case 3 -> {
                         //Remove a user
                         System.out.println("Enter name of the user you want to remove: ");
                         String username = input.nextLine();
-                        if (!library.doesUserExist(username)){
 
+                        if (!library.doesUserExist(username)){
+                            //if user doesn't really exist we cannot remove it
                             System.out.println("This user doesn't exist, so you cannot remove him/her!");
                         }
                         else {
-
+                            //else we can remove it
                             library.removeUser(username);
                         }
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                     case 4 -> {
                         //Update a user
                         System.out.println("Enter required information --> 1-Old username 2-New username 3-New password");
                         library.updateUser(input.nextLine(), input.nextLine(), input.nextLine());
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                 }
-                break;
             }
             case 3 -> {
                 //Show a list of librarian - related commands
@@ -293,9 +261,7 @@ public class Main {
                     case 1 -> {
                         //Show a list of librarians
                         library.searchLibrarian();
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                     case 2 -> {
                         //Add a librarian
@@ -303,39 +269,33 @@ public class Main {
                         Librarian librarian1 = new Librarian(input.nextLine(), input.nextLine());
 
                         if (library.doesUserExist(librarian1.getUsername()) || library.doesLibrarianExist(librarian1.getUsername())) {
-
+                            //if username exist in users or librarians we cannot register it
                             System.out.println("This username has already registered!");
                         } else {
-
+                            //else we have the permission to add it
                             library.addLibrarian(librarian1.getUsername(), librarian1.getPassword());
                         }
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                     case 3 -> {
                         //Remove a librarian
                         System.out.println("Enter name of the librarian you want to remove: ");
                         String username = input.nextLine();
                         if (!library.doesLibrarianExist(username)){
-
+                            //if librarian doesn't really exist we cannot remove him/her
                             System.out.println("This librarian doesn't exist, so you cannot remove him/her!");
                         }
                         else {
-
+                            //else we can remove him/her
                             library.removeLibrarian(username);
                         }
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                     case 4 -> {
                         //Update a librarian
                         System.out.println("Enter required information --> 1-Old username,  2-New username,  3-New password");
                         library.updateLibrarian(input.nextLine(), input.nextLine(), input.nextLine());
-                        librarianPage(library, librarian);
-
-                        break;
+                        librarianPage(library, librarian);  //back to librarian's page
                     }
                 }
             }

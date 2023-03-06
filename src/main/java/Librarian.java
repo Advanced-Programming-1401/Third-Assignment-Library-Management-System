@@ -28,5 +28,4 @@ public class Librarian {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }
