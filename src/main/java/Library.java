@@ -94,14 +94,6 @@ public class Library {
             }
         }
         System.out.println("Book has been successfully removed");
-//        for (Book book : this.books){
-
-//            if (book.getBook_name().equals(book_name)){
-//
-//                this.book_maps.remove(book.getISBN());
-//                this.books.remove(book);
-//            }
-//        }
     }
 
     public void searchBook(){
@@ -131,9 +123,11 @@ public class Library {
                 book.setBook_name(new_book_name);
                 book.setAuthor(new_author);
                 book.setPublish_year(new_publish_year);
+                System.out.println("Book has been successfully updated");
+                return;
             }
         }
-        System.out.println("Book has been successfully updated");
+        System.out.println("This book doesn't really exist, so you cannot update it.");
     }
 
     public boolean doesBookExist(String book_name){
@@ -206,9 +200,11 @@ public class Library {
 
                 user.setUsername(new_username);
                 user.setPassword(new_password);
+                System.out.println("User has been successfully updated");
+                return;
             }
         }
-        System.out.println("User has been successfully updated");
+        System.out.println("This user doesn't really exist, so you cannot update it");
     }
 
     public boolean doesUserExist(String username){

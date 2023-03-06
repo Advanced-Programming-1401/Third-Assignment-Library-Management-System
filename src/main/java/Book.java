@@ -44,7 +44,4 @@ public class Book {
         this.publish_year = publish_year;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
-    }
 }
