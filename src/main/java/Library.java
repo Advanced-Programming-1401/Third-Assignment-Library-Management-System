@@ -1,19 +1,25 @@
-import java.awt.print.Book;
+//import java.awt.print.Book;
 import java.util.*;
 import java.util.HashMap;
 
-public class Library {
+public class Library  extends Book{
     /*
     * The library should have a list of books.
     * The library should have a map of books ISBNs which is linked to the amount of book
     -> (for example: harry potter -> 4 means there are currently 4 harry potter books)
     * The library should have a list of users and a list of librarians.
      */
-    private ArrayList collection;
-    //ArrayList<String> collection= new ArrayList<Book>();
-
+    static Scanner input = new Scanner(System.in);
+    private ArrayList<Book> BookList= new ArrayList<Book>();
+    private ArrayList<User> UserList = new ArrayList<User>();
+    private ArrayList<Librarian> LibrarianList = new ArrayList<Librarian>();
+    String booksearch;
     public Library(){
-        collection = new ArrayList<Book>();
+
+        this.BookList = new ArrayList<Book>();
+        this.UserList = new ArrayList<User>();
+        this.LibrarianList = new ArrayList<Librarian>();
+
     }
 
 /*
@@ -25,18 +31,28 @@ public class Library {
     //book related functions
     public void addBook(Book book){
         //TODO
-        collection.add(book);
+        BookList.add(book);
     }
 
 
     public void removeBook(Book book){
         //TODO
-        collection.remove(book);
+        BookList.remove(book);
     }
 
-    public void searchBook(Book book){
+    public Book searchBook(){
         //TODO
 
+        System.out.println("Which book are you searching for ?");
+        booksearch = input.nextLine();
+        for (Book book : BookList)
+        {
+            if (book.getName().contains(booksearch) || book.getAuthor().contains(booksearch)
+            {
+                return book;
+            }
+        }
+        return null; //No book was found
 
     }
 
