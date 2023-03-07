@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class User  extends Library{
     //User should have a list of books
@@ -23,20 +24,20 @@ public class User  extends Library{
         this.password = password;
     }
 
-    public void rentBook(String title){
-       //TODO
-        /*int found = 0;
-        for (Book b : collection)
+    public void rentBook(String name){
+
+        int found = 0;
+        for (Book book : BookList)
         {
-            if (b.getName().equals(title))
+            if (book.getName().equals(name))
             {
                 if (found == 0)
                 {
                     found = 1;
                 }
-                if (!b.does())
+                if (!book.isBorrowed())
                 {
-                    b.borrowed=true;
+                    book.borrowed=true;
                     found = 2;
                     break;
                 }
@@ -47,15 +48,27 @@ public class User  extends Library{
         } else if (found == 1) {
             System.out.println("Sorry, this book is already borrowed.");
         } else if (found == 2) {
-            System.out.println("You successfully borrowed " + title);
+            System.out.println("You successfully borrowed " + name);
         }
 
-*/
+
 
     }
 
-    public void returnBook(){
-        //TODO
+    public boolean returnBook(){ //Returns a book back to the catalog
+            for(Book book : BookList) {
+                if(book.isBorrowed()) {
+                    book.setToReturned();
+                    return true; //Book has been returned successfully
+                }
+                else {
+                    continue;
+                }
+            }
+            System.out.println("Cannot return book at this time, sorry!");
+            return false; //Book has failed to be returned
+        }
+
 
     }
 

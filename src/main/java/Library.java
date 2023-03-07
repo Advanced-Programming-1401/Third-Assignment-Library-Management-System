@@ -2,7 +2,7 @@
 import java.util.*;
 import java.util.HashMap;
 
-public class Library  extends Book{
+public class Library  {
     /*
     * The library should have a list of books.
     * The library should have a map of books ISBNs which is linked to the amount of book
@@ -10,7 +10,7 @@ public class Library  extends Book{
     * The library should have a list of users and a list of librarians.
      */
     static Scanner input = new Scanner(System.in);
-    private ArrayList <Book> BookList= new ArrayList<Book>();
+    public ArrayList <Book> BookList= new ArrayList<Book>();
      //private HashMap<User, String  > UserList = new HashMap<String, String>();
     private ArrayList <User> UserList = new ArrayList<User>();
     private ArrayList <Librarian> LibrarianList = new ArrayList<Librarian>();

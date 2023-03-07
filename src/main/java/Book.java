@@ -5,6 +5,7 @@ public class Book /*extends Library*/ {
 
        private int YearPublish, ISBN ;
        private String name,author;
+       public boolean borrowed;
        public Book(){
            name ="";
            author="";
@@ -62,6 +63,18 @@ public class Book /*extends Library*/ {
     public void setISBN(int ISBN) {
         this.ISBN = ISBN;
     }
+    public void setToBorrowed() { //Method will fire once a book has been checked out
+        this.borrowed = true;
+    }
+
+    public void setToReturned() { //Method will fire once book has been returned to the library catalog
+        this.borrowed = false;
+    }
+
+    public boolean isBorrowed() { //Determines whether the book is borrowed or not
+        return this.borrowed;
+    }
+
 
     @Override
     public String toString() {
