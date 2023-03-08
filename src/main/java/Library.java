@@ -42,11 +42,12 @@ public class Library {
 
 
     public void removeBook(int ISBN){
+        BookList.remove(ISBN);
 
-        boolean successful = false;
-        for (int i=0;i<BookList.size();i++)
+ /*       boolean successful = false;
+        for (int i = 0 ; i < BookList.size() ; i++)
         {
-            if((int)BookList.get(i).getISBN()==ISBN)
+            if((int)BookList.get(i).getISBN() == ISBN)
             {
                 BookList.remove(i);
                 System.out.println("Book removal successful");
@@ -58,7 +59,7 @@ public class Library {
         {
             System.out.println("Could not remove book "+ ISBN );
         }
-
+*/
     }
 
     public Book searchBook(){
@@ -89,7 +90,7 @@ public class Library {
 
     public boolean doesBookExist(){
 
-        System.out.println("Know about your searching book to exist or not = ");
+        //System.out.println("Know about your searching book to exist or not = ");
         booksearch = input.nextLine();
         for (Book book : BookList)
         {
@@ -102,14 +103,6 @@ public class Library {
         //System.out.println("EXIST"); //No book was found
 
         return false;
-    }
-
-    public void increaseBook(Book book){
-        //TODO
-    }
-
-    public void decreaseBook(Book book){
-        //TODO
     }
 
 //................................................................

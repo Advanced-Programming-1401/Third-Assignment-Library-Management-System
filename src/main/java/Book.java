@@ -62,7 +62,8 @@ public class Book /*extends Library*/ {
     }
 
     public boolean isBorrowed() { //Determines whether the book is borrowed or not
-        return this.borrowed;
+        return this.borrowed = false;
+
     }
 
 

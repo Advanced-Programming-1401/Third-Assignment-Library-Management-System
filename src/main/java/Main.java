@@ -82,28 +82,40 @@ public class Main {
         switch(option){
             case 1:
                 //Book.listBook();
-                library.searchBook();
+                System.out.println(library.searchBook());
                 System.out.print("If you want to back to menu press '1'  = ");
                 int select = input.nextInt();
                 if(select == 1) {MenuForUser(library); break;}
 
             case 2:
                 if(library.doesBookExist()){
-                    System.out.println("which book do you want to rent please write it once again?");
-                    String name = input.next();
-                    user.rentBook(name);
+                    System.out.println("which book do you want to rent please write the information once again?");
+                    System.out.println("NAME = ");String name = input.next();
+                    System.out.println("AUTHOR = ");String author = input.next();
+                    System.out.println("YEAR OF PUBLISH = ");int YearPublish = input.nextInt();
+                    System.out.println("ISBN = ");int ISBN = input.nextInt();
+
+                    user.rentBook(name,author,YearPublish,ISBN);
                 }
                 else System.out.println("sorry this book does not exist");
 
                 System.out.print("If you want to back to menu press '1'  = ");
-                 select= input.nextInt();
-                if(select == 1) {MenuForUser(library); break;}
+                 int selecte= input.nextInt();
+                if(selecte == 1) {MenuForUser(library); break;}
 
             case 3:
-                if(user.returnBook()){System.out.println("return successfully");}
+                System.out.println("NAME = ");String name = input.next();
+                System.out.println("AUTHOR = ");String author = input.next();
+                System.out.println("YEAR OF PUBLISH = ");int YearPublish = input.nextInt();
+                System.out.println("ISBN = ");int ISBN = input.nextInt();
+                user.returnBook(name,author,YearPublish,ISBN);
+                System.out.println("return successfully");
                 System.out.print("If you want to back to menu press '1'  = ");
-                select= input.nextInt();
+                  select= input.nextInt();
                 if(select == 1) {MenuForUser(library); break;}
+
+            case 4:
+                System.out.println("EXIT successfully");
         }
 
     }
@@ -114,11 +126,11 @@ public class Main {
         if(library.doesLibrarianExist(username)) {System.out.println("Hi" +librarian+ "you had an account");}
         else{ System.out.println("new librarian"); library.addLibrarian(username,password);}
         System.out.println("*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_WELCOME "+ librarian +" Select the Item that you want*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*_*");
-        System.out.println("--------------------------------|------------------|-------------------|----------------|-------------------|------------------|-------------------");
-        System.out.println("1_List of book/Search of book   |2_Add Book        |3_Remove book      |4_Update book   |5_Search librarian|6_Add Librarian ");
-        System.out.println("------------------|------------------|-------------------|----------------|-------------------|------------------|-------------------");
-        System.out.println("7_Remove Librarian|8_Update Librarian   |12_Update User     |10_add User     |11_Remove User|9_Search users   |      13_Exit         ");
-        System.out.println("------------------|------------------|-------------------|----------------|--------------|------------------|-------------------");
+        System.out.println("--------------------------------|------------------|-------------------|----------------|-------------------|------------------|----------------");
+        System.out.println("1_Search of book                |2_Add Book        |3_Remove book      |4_Update book   |5_Search librarian |6_Add Librarian   |7_Remove Librarian");
+        System.out.println("--------------------------------|------------------|-------------------|----------------|-------------------|------------------|----------------");
+        System.out.println("8_Update Librarian              |12_Update User    |10_add User        |11_Remove User  |9_Search users      |13_Exit                           ");
+        System.out.println("--------------------------------|------------------|-------------------|----------------|-------------------|------------------|----------------");
         int option = input.nextInt();
         switch(option){
             case 1:
@@ -137,8 +149,9 @@ public class Main {
                 System.out.print("YEAR OF PUBLISH = ");int YearPublish = input.nextInt();
                 System.out.print("ISBN = ");int ISBN = input.nextInt();
                 Book book = new Book(name,author,YearPublish,ISBN);
+                System.out.println("Name the book again = ");
                 if(library.doesBookExist()) System.out.println("we have this book in library");
-                else library.addBook(book.getName(),book.getAuthor(),book.getYearPublish(),book.getISBN());
+                else library.addBook(book.getName(),book.getAuthor(),book.getYearPublish(),book.getISBN());System.out.println("!!ADD!!");
                 System.out.print("If you want to back to menu press '1'  = ");
                  select = input.nextInt();
                 if(select == 1) {MenuForLibrarain(library); break;}
@@ -148,8 +161,8 @@ public class Main {
                 //Remove book
                 System.out.print("If you want to remove book plz write the ISBN of the book = ");
                 ISBN = input.nextInt();
-                if(library.doesBookExist()) library.removeBook(ISBN);
-                else System.out.println("THis book does not EXIST!!");
+                if(library.doesBookExist()){ library.removeBook(ISBN);System.out.println("!!REMOVE!!");}
+                else {System.out.println("THis book does not EXIST!!");}
                 System.out.print("If you want to back to menu press '1'  = ");
                 select = input.nextInt();
                 if(select == 1) {MenuForLibrarain(library); break;}
