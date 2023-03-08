@@ -10,12 +10,12 @@ public class Main {
     static String username; static String password; static String librarian;
     static Scanner input = new Scanner(System.in);
 
-         public static void listBook(){
+      /*   public static void listBook(){
              ArrayList<Book> Booklist = new ArrayList<>();
              Book book1 = new Book("Maze Runner","James Dasher",13,2009);
              Book book2 = new Book("Hunger Games" , "Suzanne Collins" ,10,2013);
              Book book3 = new Book("Elon Musk","Ashlee Vance",8,2018);
-             Book book4 = new Book("It Ends With Us", "Colleen Hoover" ,4,2018);
+             Book book4 = new Book("It Ends With Us", "Colleen Hoover" ,4,2020);
              Booklist.add(book1);
              Booklist.add(book2);
              Booklist.add(book3);
@@ -24,16 +24,16 @@ public class Main {
              System.out.println("book2 = "+book2);
              System.out.println("book3 = "+book3);
              System.out.println("book4 = "+book4);
-         }
+         }*/
 
 
     public static void main(String[] args) {
         Library library = new Library();
+        library.addBook("Maze Runner", "James Dasher", 13, 2009);
+        library.addBook("Hunger Games", "Suzanne Collins", 10, 2013);
+        library.addBook("Elon Musk", "Ashlee Vance", 8, 2018);
+        library.addBook("It Ends With Us", "Colleen Hoover", 4, 2020);
         runMenu(library);
-      /*  int select = input.nextInt();
-        if(select == 1) MenuForLibrarain();
-        else if (select ==2) MenuForUser();
-        else System.out.println("Exit Successfully");*/
     }
 
     public static void runMenu(Library library){
@@ -81,7 +81,7 @@ public class Main {
         int option = input.nextInt();
         switch(option){
             case 1:
-                listBook();
+                //Book.listBook();
                 library.searchBook();
                 System.out.print("If you want to back to menu press '1'  = ");
                 int select = input.nextInt();
@@ -123,7 +123,7 @@ public class Main {
         switch(option){
             case 1:
                 //List of book/Search of book
-                listBook();
+                //Book.listBook();
                 library.searchBook();
                 System.out.print("If you want to back to menu press '1'  = ");
                 int select = input.nextInt();

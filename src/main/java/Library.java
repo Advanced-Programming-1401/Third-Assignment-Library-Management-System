@@ -1,20 +1,22 @@
 //import java.awt.print.Book;
 import java.util.*;
 
-public class Library  {
+public class Library {
     /*
     * The library should have a list of books.
     * The library should have a map of books ISBNs which is linked to the amount of book
     -> (for example: harry potter -> 4 means there are currently 4 harry potter books)
     * The library should have a list of users and a list of librarians.
      */
-    static Scanner input = new Scanner(System.in);
-    public ArrayList <Book> BookList= new ArrayList<Book>();
 
-     //private HashMap<User, String  > UserList = new HashMap<String, String>();
-    private ArrayList <User> UserList = new ArrayList<User>();
-    private ArrayList <Librarian> LibrarianList = new ArrayList<Librarian>();
+    static Scanner input = new Scanner(System.in);
+    public ArrayList<Book> BookList = new ArrayList<Book>();
+
+    //private HashMap<User, String  > UserList = new HashMap<String, String>();
+    private ArrayList<User> UserList = new ArrayList<User>();
+    private ArrayList<Librarian> LibrarianList = new ArrayList<Librarian>();
     String booksearch;
+
     public Library(){
 
         this.BookList = new ArrayList<Book>();
@@ -31,10 +33,10 @@ public class Library  {
 
     //book related functions
     public void addBook(String name , String Author, int YearPublish , int ISBN ){
-        Book book = new Book();
+        Book book = new Book(name,Author,YearPublish,ISBN);
         BookList.add(book);
 
-        System.out.println("!!!!!!!!!ADD!!!!!!!!!!!");
+        //System.out.println("!!!!!!!!!ADD!!!!!!!!!!!");
 
     }
 
@@ -70,6 +72,7 @@ public class Library  {
                 return book;
             }
         }
+        System.out.println("there is no book with this name");
         return null; //No book was found
 
     }
