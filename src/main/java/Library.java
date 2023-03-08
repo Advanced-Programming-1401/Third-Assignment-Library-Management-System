@@ -30,8 +30,12 @@ public class Library  {
 */
 
     //book related functions
-    public void addBook(Book book){
+    public void addBook(String name , String Author, int YearPublish , int ISBN ){
+        Book book = new Book();
         BookList.add(book);
+
+        System.out.println("!!!!!!!!!ADD!!!!!!!!!!!");
+
     }
 
 
@@ -138,10 +142,10 @@ public class Library  {
         }
     }
 
-    public User searchUser(String Usersearch){
+    public User searchUser(){
 
         System.out.println("Which User are you searching for ?");
-        Usersearch = input.nextLine();
+        String Usersearch = input.nextLine();
         for (User user : UserList)
         {
             if (user.getUsername().contains(booksearch))
@@ -203,12 +207,12 @@ public class Library  {
         }
     }
 
-    public Librarian searchLibrarian(String  Librariansearch){
-        //System.out.println("Which Librarian are you searching for ?");
-       // Librariansearch = input.nextLine();
+    public Librarian searchLibrarian(){
+        System.out.println("Which Librarian are you searching for ?");
+       String Librariansearch = input.nextLine();
         for (Librarian librarian : LibrarianList)
         {
-            if (librarian.getUsername().contains(booksearch))
+            if (librarian.getUsername().contains(Librariansearch))
             {
                 return librarian;
             }
@@ -223,8 +227,8 @@ public class Library  {
     }
 
     public boolean doesLibrarianExist(String LibrarianSearch){
-        System.out.println("Know about your seaerching librarian to exist or not = ");
-         LibrarianSearch = input.nextLine();
+        //System.out.println("To Know about your searching librarian to exist or not plz write username again = ");
+         //LibrarianSearch = input.nextLine();
         for (Librarian librarian : LibrarianList)
         {
             if (librarian.getUsername().contains(LibrarianSearch))
