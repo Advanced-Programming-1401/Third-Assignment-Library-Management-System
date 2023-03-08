@@ -1,6 +1,5 @@
 //import java.awt.print.Book;
 import java.util.*;
-import java.util.HashMap;
 
 public class Library  {
     /*
@@ -11,6 +10,7 @@ public class Library  {
      */
     static Scanner input = new Scanner(System.in);
     public ArrayList <Book> BookList= new ArrayList<Book>();
+
      //private HashMap<User, String  > UserList = new HashMap<String, String>();
     private ArrayList <User> UserList = new ArrayList<User>();
     private ArrayList <Librarian> LibrarianList = new ArrayList<Librarian>();
@@ -58,7 +58,7 @@ public class Library  {
     public Book searchBook(){
 
         System.out.println("Which book are you searching for ?");
-        booksearch = input.nextLine();
+        booksearch = input.next();
         for (Book book : BookList)
         {
             if (book.getName().contains(booksearch) || book.getAuthor().contains(booksearch))
@@ -80,19 +80,21 @@ public class Library  {
 
     }
 
-    public void doesBookExist(){
+    public boolean doesBookExist(){
 
-        System.out.println("Know about your seaerching book to exist or not = ");
+        System.out.println("Know about your searching book to exist or not = ");
         booksearch = input.nextLine();
         for (Book book : BookList)
         {
             if (book.getName().contains(booksearch) || book.getAuthor().contains(booksearch))
             {
-               System.out.println("NOT EXIST");
+               //System.out.println("NOT EXIST");
+                return true;
             }
         }
-        System.out.println("EXIST"); //No book was found
+        //System.out.println("EXIST"); //No book was found
 
+        return false;
     }
 
     public void increaseBook(Book book){
@@ -107,10 +109,10 @@ public class Library  {
 
     //user related functions
 
-    public void addUser(User username , User password){
+    public void addUser(String username , String password){
 
-         UserList.add(username);
-         UserList.add(password);
+        User user = new User(username ,password);
+         UserList.add(user);
         System.out.println("Welcome!  " + username );
 
     }
@@ -157,24 +159,25 @@ public class Library  {
 
     }
 
-    public void doesUserExist(String Usersearch ){
-        System.out.println("Which User are you searching for ?");
-        Usersearch = input.nextLine();
+    public boolean doesUserExist(String Usersearch ){
+        //Usersearch = input.nextLine();
         for (User user : UserList)
         {
             if (user.getUsername().contains(Usersearch))
             {
-               System.out.println("EXIST");
+               //System.out.println("EXIST");
+               return true;
             }
         }
-        System.out.println("NO User EXIST"); //No user was found
+        //System.out.println("NO User EXIST"); //No user was found
+        return false;
     }
 
     //librarian related functions
 
-    public void addLibrarian(Librarian username , Librarian password){
-        LibrarianList.add(username);
-        LibrarianList.add(password);
+    public void addLibrarian(String username , String password){
+        Librarian librarian = new Librarian(username ,password);
+        LibrarianList.add(librarian);
         System.out.println("Welcome!  MRS/MS " + username );
 
     }
@@ -201,8 +204,8 @@ public class Library  {
     }
 
     public Librarian searchLibrarian(String  Librariansearch){
-        System.out.println("Which Librarian are you searching for ?");
-        Librariansearch = input.nextLine();
+        //System.out.println("Which Librarian are you searching for ?");
+       // Librariansearch = input.nextLine();
         for (Librarian librarian : LibrarianList)
         {
             if (librarian.getUsername().contains(booksearch))
@@ -219,17 +222,19 @@ public class Library  {
         user.setPassword(password);
     }
 
-    public void doesLibrarianExist(String LibrarianSearch){
+    public boolean doesLibrarianExist(String LibrarianSearch){
         System.out.println("Know about your seaerching librarian to exist or not = ");
          LibrarianSearch = input.nextLine();
         for (Librarian librarian : LibrarianList)
         {
             if (librarian.getUsername().contains(LibrarianSearch))
             {
-                System.out.println("EXIST");
+                //System.out.println("EXIST");
+                return true;
             }
         }
-        System.out.println("NO User EXIST"); //No user was found
+        //System.out.println("NO User EXIST"); //No user was found
+        return false;
     }
 
     }

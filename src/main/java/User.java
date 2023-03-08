@@ -7,6 +7,10 @@ public class User  extends Library{
     //User should have a username and a password
     private String username;
     private String password;
+    public User(String username , String password){
+        this.username = username;
+        this.password = password;
+    }
 
 
     public String getUsername() {
@@ -60,9 +64,6 @@ public class User  extends Library{
                 if(book.isBorrowed()) {
                     book.setToReturned();
                     return true; //Book has been returned successfully
-                }
-                else {
-                    continue;
                 }
             }
             System.out.println("Cannot return book at this time, sorry!");
