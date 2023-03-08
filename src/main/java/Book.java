@@ -55,11 +55,11 @@ public class Book {
 
     public String toString()
     {
-        return "Name : " + name + "" +
-                "Author : " + author + "" +
-                "Year of publish : " +  yearOfPublish + "" +
-                "ISBN : " + ISBN + "" +
-                "Is available ? " + isAvailable;
+        return "Name: " + name + " " +
+                "Author: " + author + " " +
+                "Year of publish: " +  yearOfPublish + "" +
+                "ISBN: " + ISBN + "" +
+                "Is available? " + isAvailable;
     }
 
     public void changeAvailableStatus(){

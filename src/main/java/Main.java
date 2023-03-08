@@ -11,17 +11,17 @@ public class Main
 
     public static void main(String[] args)
     {
-        runMenu();
-    }
-
-    public static void runMenu()
-    {
-        //TODO:
-
         Book ketab = new Book();
         Library ketabkhune = new Library();
         User karbar = new User();
         Librarian ketabdar = new Librarian();
+        runMenu(ketab , ketabkhune , karbar , ketabdar);
+    }
+
+    public static void runMenu(Book ketab, Library ketabkhune, User karbar, Librarian ketabdar)
+    {
+        //TODO:
+
         Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to the library!");
@@ -45,7 +45,7 @@ public class Main
             {
                 signInUser(ketabkhune , ketabdar , karbar , ketab);
             }
-            userMenu(ketabkhune, karbar, ketab);
+            userMenu(ketabkhune, karbar, ketab , ketabdar);
         }
         else
         {
@@ -62,7 +62,6 @@ public class Main
                signInLibrarian(ketabkhune , ketabdar , karbar , ketab);
             }
             librarianMenu(ketabkhune, karbar, ketab, ketabdar);
-
         }
     }
 
@@ -80,14 +79,14 @@ public class Main
             System.out.println("Password : ");
             String password = input.nextLine();
             karbar.setPassword(password);
-            if (!(ketabkhune.userPasswordCheck(karbar)))
+            if (ketabkhune.userPasswordCheck(karbar))
             {
-                System.out.println("Wrong password!");
-                runMenu();
+                System.out.println("Welcome!");
             }
             else
             {
-                System.out.println("Welcome!");
+                System.out.println("Wrong password!");
+                runMenu(ketab , ketabkhune , karbar , ketabdar);
             }
         }
         else
@@ -112,21 +111,21 @@ public class Main
             System.out.println("Enter your password");
             System.out.println("Password : ");
             String password = input.nextLine();
-            if (!(ketabkhune.userPasswordCheck(karbar)))
+            if (ketabkhune.userPasswordCheck(karbar))
             {
-                System.out.println("Wrong password!");
-                runMenu();
+                System.out.println("Welcome!");
             }
             else
             {
-                System.out.println("Welcome!");
+                System.out.println("Wrong password!");
+                runMenu(ketab , ketabkhune , karbar , ketabdar);
             }
         }
         else
         {
             System.out.println("You do not have an account!");
             System.out.println("You have to sign up!");
-            runMenu();
+            runMenu(ketab , ketabkhune , karbar , ketabdar);
         }
     }
 
@@ -144,14 +143,14 @@ public class Main
             System.out.println("Password : ");
             String password = input.nextLine();
             ketabdar.setPassword(password);
-            if (!(ketabkhune.librarianPasswordCheck(ketabdar)))
+            if (ketabkhune.librarianPasswordCheck(ketabdar))
             {
-                System.out.println("Wrong password!");
-                runMenu();
+                System.out.println("Welcome!");
             }
             else
             {
-                System.out.println("Welcome!");
+                System.out.println("Wrong password!");
+                runMenu(ketab , ketabkhune , karbar , ketabdar);
             }
         }
         else
@@ -171,26 +170,26 @@ public class Main
         System.out.println("Username : ");
         String username = input.nextLine();
         karbar.setUsername(username);
-        if (ketabkhune.doesUserExist(karbar))
+        if (ketabkhune.doesLibrarianExist(ketabdar))
         {
             System.out.println("Enter your password");
             System.out.println("Password : ");
             String password = input.nextLine();
-            if (!(ketabkhune.userPasswordCheck(karbar)))
+            if (ketabkhune.librarianPasswordCheck(ketabdar))
             {
-                System.out.println("Wrong password!");
-                runMenu();
+                System.out.println("Welcome!");
             }
             else
             {
-                System.out.println("Welcome!");
+                System.out.println("Wrong password!");
+                runMenu(ketab , ketabkhune , karbar , ketabdar);
             }
         }
         else
         {
             System.out.println("You do not have an account!");
             System.out.println("You have to sign up!");
-            runMenu();
+            runMenu(ketab , ketabkhune , karbar , ketabdar);
         }
     }
 
@@ -240,13 +239,13 @@ public class Main
         }
     }
 
-    public static void logOut()
+    public static void logOut(Book ketab , Library ketabkhune , User karbar , Librarian ketabdar)
     {
         System.out.println("You have logged out!");
-        runMenu();
+        runMenu(ketab , ketabkhune , karbar , ketabdar);
     }
 
-    public static void userMenu(Library ketabkhune, User karbar, Book ketab)
+    public static void userMenu(Library ketabkhune, User karbar, Book ketab , Librarian ketabdar)
     {
         Scanner input = new Scanner(System.in);
         System.out.println("1.Borrow book");
@@ -259,22 +258,22 @@ public class Main
         if (command == 1)
         {
             borrowBook(ketabkhune, karbar, ketab);
-            userMenu(ketabkhune, karbar, ketab);
+            userMenu(ketabkhune, karbar, ketab , ketabdar);
         }
         else if (command == 2)
         {
             returnBook(ketabkhune, karbar, ketab);
-            userMenu(ketabkhune, karbar, ketab);
+            userMenu(ketabkhune, karbar, ketab, ketabdar);
         }
         else  if (command == 3)
         {
             ketabkhune.updateUser(karbar);
-            userMenu(ketabkhune, karbar, ketab);
+            userMenu(ketabkhune, karbar, ketab, ketabdar);
 
         }
         else if (command == 4)
         {
-            logOut();
+            logOut(ketab , ketabkhune , karbar , ketabdar);
         }
     }
 
@@ -294,86 +293,103 @@ public class Main
         System.out.println("7.Update user");
         // Librarian
         System.out.println("8.Update librarian");
-        System.out.println("9.Log out");
+        System.out.println("9.Search librarian");
+        System.out.println("10.Log out");
         System.out.println("Enter your command");
         System.out.println("command : ");
         int command = Integer.parseInt(input.nextLine());
-        switch (command)
-        {
-            case 1:
-                System.out.println("Enter book's name");
-                System.out.println("Name : ");
-                String name = input.nextLine();
-                ketab.setName(name);
-                System.out.println("Enter author's name");
-                System.out.println("Author : ");
-                String author = input.nextLine();
-                ketab.setAuthor(author);
-                System.out.println("Enter the year of publish");
-                System.out.println("Year of publish : ");
-                int yearOfPublish = Integer.parseInt(input.nextLine());
-                ketab.setYearOfPublish(yearOfPublish);
-                System.out.println("Enter the book's ISBN");
-                System.out.println("ISBN : ");
-                String ISBN = input.nextLine();
-                ketab.setISBN(ISBN);
-                ketabkhune.addBook(ketab);
-                break;
-            case 2:
-                System.out.println("Enter the book's ISBN");
-                System.out.println("ISBN : ");
-                String removeISBN = input.nextLine();
-                ketab.setISBN(removeISBN);
-                ketabkhune.removeBook(ketab);
-                break;
-            case 3:
-                if (ketabkhune.doesBookExist(ketab))
-                {
-                    System.out.println(ketab);
-                }
-                else
-                {
-                    System.out.println("This book does not exist!");
-                }
-                break;
-            case 4:
-                System.out.println("Enter the user's username");
-                System.out.println("Username : ");
-                usersUsername = input.nextLine();
-                karbar.setUsername(usersUsername);
-                System.out.println("Enter user's password");
-                System.out.println("Password : ");
-                usersPassword = input.nextLine();
-                karbar.setPassword(usersPassword);
-                ketabkhune.addUser(karbar);
-                break;
-            case 5:
-                System.out.println("Enter the user's username");
-                System.out.println("Username : ");
-                usersUsername = input.nextLine();
-                karbar.setUsername(usersUsername);
-                ketabkhune.removeUser(karbar);
-                break;
-            case 6:
-                System.out.println("Enter the user's username");
-                System.out.println("Username : ");
-                usersUsername = input.nextLine();
-                karbar.setUsername(usersUsername);
-                ketabkhune.searchUser(karbar);
-                break;
-            case 7:
-                System.out.println("Enter the user's username");
-                System.out.println("Username : ");
-                usersUsername = input.nextLine();
-                karbar.setUsername(usersUsername);
-                ketabkhune.updateUser(karbar);
-                break;
-            case 8:
-                ketabkhune.updateLibrarian(ketabdar);
-                break;
-            case 9:
-                logOut();
+        if (command == 1) {
+            System.out.println("Enter book's name");
+            System.out.println("Name : ");
+            String name = input.nextLine();
+            ketab.setName(name);
+            System.out.println("Enter author's name");
+            System.out.println("Author : ");
+            String author = input.nextLine();
+            ketab.setAuthor(author);
+            System.out.println("Enter the year of publish");
+            System.out.println("Year of publish : ");
+            int yearOfPublish = Integer.parseInt(input.nextLine());
+            ketab.setYearOfPublish(yearOfPublish);
+            System.out.println("Enter the book's ISBN");
+            System.out.println("ISBN : ");
+            String ISBN = input.nextLine();
+            ketab.setISBN(ISBN);
+            ketabkhune.addBook(ketab);
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
         }
+        else if (command == 2) {
+            System.out.println("Enter the book's ISBN");
+            System.out.println("ISBN : ");
+            String removeISBN = input.nextLine();
+            ketab.setISBN(removeISBN);
+            ketabkhune.removeBook(ketab);
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
+        }
+        else if (command == 3) {
+            if (ketabkhune.doesBookExist(ketab)) {
+                System.out.println(ketab);
+            } else {
+                System.out.println("This book does not exist!");
+            }
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
+        }
+        else if (command == 4) {
+            System.out.println("Enter the user's username");
+            System.out.println("Username : ");
+            usersUsername = input.nextLine();
+            karbar.setUsername(usersUsername);
+            System.out.println("Enter user's password");
+            System.out.println("Password : ");
+            usersPassword = input.nextLine();
+            karbar.setPassword(usersPassword);
+            ketabkhune.addUser(karbar);
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
+        }
+        else if (command == 5) {
+            System.out.println("Enter the user's username");
+            System.out.println("Username : ");
+            usersUsername = input.nextLine();
+            karbar.setUsername(usersUsername);
+            if (ketabkhune.doesUserExist(karbar))
+            {
+                ketabkhune.removeUser(karbar);
+                System.out.println("The user is removed");
+            }
+            else
+            {
+                System.out.println("The user does not exist!");
+            }
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
+        }
+        else if (command == 6) {
+            System.out.println("Enter the user's username");
+            System.out.println("Username : ");
+            usersUsername = input.nextLine();
+            karbar.setUsername(usersUsername);
+            ketabkhune.searchUser(karbar);
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
+        }
+        else if (command == 7) {
+            System.out.println("Enter the user's username");
+            System.out.println("Username : ");
+            usersUsername = input.nextLine();
+            karbar.setUsername(usersUsername);
+            ketabkhune.updateUser(karbar);
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
+        }
+        else if (command == 8) {
+            ketabkhune.updateLibrarian(ketabdar);
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
+        }
+        else if (command == 9) {
+            ketabkhune.searchLibrarian(ketabdar);
+            librarianMenu(ketabkhune , karbar , ketab , ketabdar);
+        }
+        else if (command == 10) {
+            logOut(ketab , ketabkhune , karbar , ketabdar);
+        }
+
     }
 }
 

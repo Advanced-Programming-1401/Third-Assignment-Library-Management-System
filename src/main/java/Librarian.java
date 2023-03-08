@@ -53,7 +53,7 @@ public class Librarian
 
     public String toString()
     {
-        return "Librarian's username : " + username + "" +
-                "Librarian's password : " + password;
+        return "Librarian's username: " + username + " " +
+                "Librarian's password: " + password;
     }
 }

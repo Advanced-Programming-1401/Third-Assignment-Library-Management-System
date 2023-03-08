@@ -99,7 +99,7 @@ public class User {
 
     public String toString()
     {
-        return "User's username : " + username + "" +
-            "User's password : " + password;
+        return "User's username: " + username + " " +
+            "User's password: " + password;
     }
 }
