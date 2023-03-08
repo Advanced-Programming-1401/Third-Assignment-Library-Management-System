@@ -17,9 +17,8 @@ public class Book  {
 
            this.name = name;
            this.author = author;
-           this.ISBN = ISBN;
            this.YearPublish = YearPublish;
-
+           this.ISBN = ISBN;
        }
 
     public String getName() {

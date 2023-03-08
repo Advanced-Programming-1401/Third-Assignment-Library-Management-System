@@ -156,9 +156,9 @@ public class Main {
                 System.out.print("YEAR OF PUBLISH = "); YearPublish = input.nextInt();
                 System.out.print("ISBN = "); ISBN = input.nextInt();
                 System.out.print("Write the name of the book again = ");
-                String yearPublish = String.valueOf(YearPublish);
-                String isbn = String.valueOf(ISBN);
-                if(library.doesBookExist()){ library.removeBook(name,author,yearPublish,isbn);System.out.println("!!REMOVE!!");}
+                //String yearPublish = String.valueOf(YearPublish);
+               // String isbn = String.valueOf(ISBN);
+                if(library.doesBookExist()){ library.removeBook(name,author,YearPublish,ISBN);System.out.println("!!REMOVE!!");}
                 else {System.out.println("THis book does not EXIST!!");}
                 System.out.print("If you want to back to menu press '1'  = ");
                 select = input.nextInt();

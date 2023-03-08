@@ -41,11 +41,20 @@ public class Library {
     }
 
 
-    public void removeBook(String name , String Author, String YearPublish , String ISBN){
-      BookList.remove(name);
-      BookList.remove(Author);
-      BookList.remove(YearPublish);
-      BookList.remove(ISBN);
+    public void removeBook(String name , String Author, int YearPublish ,int ISBN){
+        Book bookToRemove = null;
+        // Search for book with matching attributes
+        for (Book book : BookList) {
+            if (book.getName().equals(name) && book.getAuthor().equals(Author) && book.getYearPublish() == (YearPublish) && book.getISBN() == (ISBN)) {
+                bookToRemove = book;
+                break;
+            }
+        }
+        if (bookToRemove != null) {
+            BookList.remove(bookToRemove);
+            return;
+        }
+        return;
 
     }
 
@@ -67,11 +76,20 @@ public class Library {
 
     public void updateBook(String UpdateName , String UpdateAuthor ,int UpdateYear , int UpdateISBN){
 
-        Book book = null;
-        book.setName(UpdateName);
-        book.setAuthor(UpdateAuthor);
-        book.setYearPublish(UpdateYear);
-        book.setISBN(UpdateISBN);
+        for (Book book : BookList) {
+
+            if (book.getName().equals(UpdateName)) {
+
+                book.setName(UpdateName);
+                book.setAuthor(UpdateAuthor);
+                book.setYearPublish(UpdateYear);
+                book.setISBN(UpdateISBN);
+                System.out.println("UPDATE...");
+                return;
+            }
+        }
+        System.out.println("Can not UPDATE");
+        return;
 
     }
 
@@ -106,7 +124,8 @@ public class Library {
 
     public void removeUser(String username ,String password){
         User user = new User(username ,password);
-        UserList.remove(user);
+        UserList.remove(user.getUsername());
+        UserList.remove(user.getPassword());
     }
 
     public User searchUser(){
@@ -123,11 +142,17 @@ public class Library {
         return null; //No user was found
     }
 
-    public void updateUser(String username , String password ){
-        User user = null;
-        user.setUsername(username);
-        user.setPassword(password);
+    public void updateUser(String username , String password ) {
+        for (User user : UserList) {
 
+            if (user.getUsername().equals(username)) {
+
+                user.setUsername(username);
+                user.setPassword(password);
+                System.out.println("UPDATE...");
+                return;
+            }
+        }
     }
 
     public boolean doesUserExist(String Usersearch ){
@@ -172,9 +197,16 @@ public class Library {
     }
 
     public void updateLibrarian(String username , String password){
-        User user = null;
-        user.setUsername(username);
-        user.setPassword(password);
+        for (Librarian librarian : LibrarianList) {
+
+            if (librarian.getUsername().equals(username)) {
+
+                librarian.setUsername(username);
+                librarian.setPassword(password);
+                System.out.println("UPDATE...");
+                return;
+            }
+        }
     }
 
     public boolean doesLibrarianExist(String LibrarianSearch){
