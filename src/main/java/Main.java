@@ -89,6 +89,7 @@ public class Main {
                 if(select == 1) {MenuForUser(library); break;}
 
             case 4:
+                //show list books
                 System.out.println(library.BookList);
                 System.out.print("If you want to back to menu press '1'  = ");
                 select= input.nextInt();
@@ -96,13 +97,14 @@ public class Main {
 
 
             case 5:
-
+                //show list borrow books
                 System.out.println(user.rentBooks);
                 System.out.print("If you want to back to menu press '1'  = ");
                 select= input.nextInt();
                 if(select == 1) {MenuForUser(library); break;}
 
             case 6:
+                //EXIT part
                 runMenu(library);
         }
 
@@ -154,7 +156,9 @@ public class Main {
                 System.out.print("YEAR OF PUBLISH = "); YearPublish = input.nextInt();
                 System.out.print("ISBN = "); ISBN = input.nextInt();
                 System.out.print("Write the name of the book again = ");
-                if(library.doesBookExist()){ library.removeBook(ISBN);System.out.println("!!REMOVE!!");}
+                String yearPublish = String.valueOf(YearPublish);
+                String isbn = String.valueOf(ISBN);
+                if(library.doesBookExist()){ library.removeBook(name,author,yearPublish,isbn);System.out.println("!!REMOVE!!");}
                 else {System.out.println("THis book does not EXIST!!");}
                 System.out.print("If you want to back to menu press '1'  = ");
                 select = input.nextInt();
@@ -185,7 +189,7 @@ public class Main {
                 System.out.print("Username = "); String username = input.next();
                 System.out.print("Password = "); String password = input.next();
                 Librarian librarian1 = new Librarian(username , password);
-                System.out.println("Name the book again = ");
+                //System.out.println("Name the book again = ");
                 if(library.doesLibrarianExist(username)) System.out.println("we have this Username");
                 else library.addLibrarian(librarian1.getUsername(),librarian1.getPassword()); System.out.println("!!!!!!ADD!!!!!!");
                 System.out.print("If you want to back to menu press '1'  = ");
@@ -197,7 +201,7 @@ public class Main {
                 System.out.println("If you want to remove librarian plz write his/her username and password");
                 System.out.print("Username = ");  username = input.next();
                 System.out.print("Password = ");  password = input.next();
-                System.out.println("Name the book again = ");
+                //System.out.println("Name the book again = ");
                 if(library.doesLibrarianExist(username)) library.removeLibrarian(username , password);
                 else System.out.println("No account with this username");
                 System.out.print("If you want to back to menu press '1'  = ");
@@ -238,7 +242,7 @@ public class Main {
                 System.out.println("If you want to remove User plz write his/her username and password");
                 System.out.print("Username = ");  username = input.next();
                 System.out.print("Password = ");  password = input.next();
-                System.out.println("Write the name of the book again = ");
+                //System.out.println("Write the name of the book again = ");
                 if(library.doesUserExist(username)) library.removeUser(username , password);
                 else System.out.println("No account with this username");
                 System.out.print("If you want to back to menu press '1'  = ");

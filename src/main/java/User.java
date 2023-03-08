@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class User  /*extends Library*/{
+public class User {
     //User should have a list of books
     //User should have a username and a password
     private String username;

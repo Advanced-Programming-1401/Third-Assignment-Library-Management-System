@@ -14,7 +14,7 @@ public class Library {
 
     //private HashMap<User, String  > UserList = new HashMap<String, String>();
     ArrayList<User> UserList = new ArrayList<User>();
-     ArrayList<Librarian> LibrarianList = new ArrayList<Librarian>();
+    ArrayList<Librarian> LibrarianList = new ArrayList<Librarian>();
     String booksearch;
 
     public Library(){
@@ -41,25 +41,12 @@ public class Library {
     }
 
 
-    public void removeBook(int ISBN){
-        BookList.remove(ISBN);
+    public void removeBook(String name , String Author, String YearPublish , String ISBN){
+      BookList.remove(name);
+      BookList.remove(Author);
+      BookList.remove(YearPublish);
+      BookList.remove(ISBN);
 
- /*       boolean successful = false;
-        for (int i = 0 ; i < BookList.size() ; i++)
-        {
-            if((int)BookList.get(i).getISBN() == ISBN)
-            {
-                BookList.remove(i);
-                System.out.println("Book removal successful");
-                successful=true;
-            }
-        }
-
-        if (!successful)
-        {
-            System.out.println("Could not remove book "+ ISBN );
-        }
-*/
     }
 
     public Book searchBook(){
@@ -118,24 +105,8 @@ public class Library {
     }
 
     public void removeUser(String username ,String password){
-
-        boolean successful = false;
-        for (int i = 0 ; i < UserList.size() ; i++)
-        {
-            if(UserList.equals(UserList.get(i).getUsername()))
-            {
-                UserList.remove(username);
-                UserList.remove(password);
-
-                System.out.println("User removal successful");
-                successful=true;
-            }
-        }
-
-        if (!successful)
-        {
-            System.out.println("There is no user with "+ username +"username and "+password+" this password" );
-        }
+        User user = new User(username ,password);
+        UserList.remove(user);
     }
 
     public User searchUser(){
@@ -183,24 +154,8 @@ public class Library {
     }
 
     public void removeLibrarian(String username , String password){
-
-        boolean successful = false;
-        for (int i = 0 ; i < LibrarianList.size() ; i++)
-        {
-            if(LibrarianList.equals(LibrarianList.get(i).getUsername()))
-            {
-                LibrarianList.remove(username);
-                LibrarianList.remove(password);
-
-                System.out.println("Librarian removal successful");
-                successful=true;
-            }
-        }
-
-        if (!successful)
-        {
-            System.out.println("There is no librarian with "+ username +"username and "+password+" this password" );
-        }
+        Librarian librarian = new Librarian(username ,password);
+        LibrarianList.remove(librarian);
     }
 
     public Librarian searchLibrarian(){
