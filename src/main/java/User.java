@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class User  extends Library{
+public class User  /*extends Library*/{
     //User should have a list of books
     //User should have a username and a password
     private String username;
     private String password;
-    private ArrayList<Book> rentBooks = new ArrayList<Book>();
+    ArrayList<Book> rentBooks = new ArrayList<Book>();
     public User(String username , String password){
         this.username = username;
         this.password = password;
@@ -40,5 +40,12 @@ public class User  extends Library{
         rentBooks.remove(book);
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", rentBooks=" + rentBooks +
+                '}';
     }
+}

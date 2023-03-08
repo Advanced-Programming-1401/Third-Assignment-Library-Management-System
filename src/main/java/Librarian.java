@@ -34,4 +34,12 @@ public class Librarian  {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "Librarian{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

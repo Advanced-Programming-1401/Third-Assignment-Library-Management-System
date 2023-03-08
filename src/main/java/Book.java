@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Book /*extends Library*/ {
+public class Book  {
     //Book should contain name,author,year of publish and ISBN
 
        private int YearPublish, ISBN ;

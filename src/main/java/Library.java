@@ -10,11 +10,11 @@ public class Library {
      */
 
     static Scanner input = new Scanner(System.in);
-    public ArrayList<Book> BookList = new ArrayList<Book>();
+    ArrayList<Book> BookList = new ArrayList<Book>();
 
     //private HashMap<User, String  > UserList = new HashMap<String, String>();
-    private ArrayList<User> UserList = new ArrayList<User>();
-    private ArrayList<Librarian> LibrarianList = new ArrayList<Librarian>();
+    ArrayList<User> UserList = new ArrayList<User>();
+     ArrayList<Librarian> LibrarianList = new ArrayList<Librarian>();
     String booksearch;
 
     public Library(){
