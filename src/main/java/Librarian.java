@@ -1,10 +1,20 @@
-public class Librarian {
-    /*
-    * The librarian should have a username and a password
-    * The librarian should be able to search users, librarians and books
-    * The librarian should be able to add\remove\update user add\remove\update_
-    _ librarian and add\remove\update book
-     */
+import java.util.Scanner;
 
+public class Librarian {
+
+    String libName;
+    String libPass;
+    Scanner input = new Scanner(System.in);
+
+    public Librarian()
+    {
+        System.out.println("Enter librarian name:");
+
+        this.libName = input.nextLine();
+
+        System.out.println("Enter librarian password:");
+
+        this.libPass = input.nextLine();
+    }
 
 }

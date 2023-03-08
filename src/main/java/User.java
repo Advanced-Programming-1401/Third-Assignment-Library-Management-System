@@ -1,12 +1,23 @@
+import java.util.Scanner;
+
 public class User {
-    //User should have a list of books
-    //User should have a username and a password
 
-    public void rentBook(){
-        //TODO
-    }
+    String userName;
+    String passWord;
 
-    public void returnBook(){
-        //TODO
+    Book borrowedBooks[] = new Book[3];
+    public int booksCount = 0;
+
+    Scanner input = new Scanner(System.in);
+
+    public User()
+    {
+        System.out.println("Enter username:");
+
+        this.userName = input.nextLine();
+
+        System.out.println("Enter password:");
+
+        this.passWord = input.nextLine();
     }
 }
