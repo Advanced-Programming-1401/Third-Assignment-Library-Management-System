@@ -1,0 +1,45 @@
+"i tried to make this application with gui but i failed due to the lack of timne , and as i wanted to give the assignment
+at its own time its not the =best version of the app but , it works"
+Introduction;
+this is an app for handeling a library, that you can enter as an user or as a librarian, for safety reasons you need a password
+and a username , when you enter the app you can do diffrent things , such as borrowing or returning and...
+Design:
+there are 5 classes in the project: main,librarian,user,library,book
+the hardest part of this project is how to handle all the information that you get or you have to provide to the user
+and ...
+(user) class:
+i used oop to handle all the info each object contais : name password and the name of the book that the user borrowed.
+user class extends library class because i needed the array list that i created and (it is an arraylist of objects)
+(librarian) class:
+again in librarian class we have aconstructer and diffrent objects that contais passwords and usernames and yet again it extends
+library class because our libray class is our database in our project and i needed all the methods in that class.
+and it contains an array list of all the librarians.
+(book) class:
+again i used book class to make diffrent objects thjat in each objects we have the isbn, writer,year of publish and the name of the books
+i created another variable called counter and it has the quantity of each book in the library and only the librarians can
+increase or decrease the amounts of the book you have in the library,
+ (library) class:
+ as i said this class is the most important if thyem all beacause it is the data base and it has all the methods that
+ our app needs to run and the array list of the objects from all three classes.
+ addBooks method is the first method and when you call it it will add all the books in the library to the array list of them ,
+ and then you can enter the book you want to add and it will increase or decrease or actually add your desired bok
+ removeBook method is work the sa=me as addBooks but in reverse:)
+ searchBook and doesBookExist methods d the same thing and they ask you to type thye name of the book and they will
+ look for the book in the wanted array list if they find it wallah! if not they will tell yu that it doesn't exist.
+ increseBook and decreaseBook methods work in reverse and you need to tell the the name of the book and if you want to
+ decrease or increase the quantity of the book you named and wallah! again.
+ the following addUser searchUser removeUser methods are only available for the librarians , they have top type teh
+ name of the user thay want and if it exist it will tell them and it will ask them if thay want to remove the user or if thay want to
+ adda  new user to the rented arraylkist.
+ the following addLibrarian searchLibrarAN REMOVElibrarian doesLIbrarianExist are methods that only librarians can access
+ and basically they work the same as the other finding methods in the project , you type the name of the librarian and first you see if
+  they exist if they do now you can add them or remove them based on the method and they will be add or removed from the array list of
+  librarians.
+  (main)class;
+  it is obvous that its is the main method but what is really important abiut it is that
+  it helps the privacy of the app and it will ask you to fill multiple sheets and then it will let you to choose what you want to do ,
+  first you need to choose if you want to enter the application as a student or a librarian then based on what you said
+  it will give you multiple options and if you can pass teh password and username test yopu can choose between the given options
+  for example for the usr you can either choose between retuenBook or renBook that you have to type the boo's name and it will
+  search through the arraulist of books and if it found it will check that you didn't borrow anyother books and then it will give it
+  to you and decrease the cpounter of books in its own arraylisty.
