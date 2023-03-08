@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.HashMap;
+
 public class Library {
     /*
     * The library should have a list of books.
@@ -15,10 +17,13 @@ public class Library {
 
     Scanner input = new Scanner(System.in);
 
+    HashMap<String , Integer> numberOfBooks = new HashMap<String , Integer>();
+
     public void addBook(Book ketab){
         if (!doesBookExist(ketab))
         {
             books.add(ketab);
+            increaseBook(ketab);
         }
         else
         {
@@ -34,6 +39,7 @@ public class Library {
                 if (ketab.getISBN().equals(books.get(i).getISBN()))
                 {
                     books.remove(i);
+                    decreaseBook(ketab);
                     break;
                 }
             }
@@ -44,16 +50,16 @@ public class Library {
         }
     }
 
-    public void searchBook(Book ketab){
+    public String searchBook(Book ketab){
         //TODO
-        if (doesBookExist(ketab))
+        for (int i=0; i<books.size(); i++)
         {
-            System.out.println(ketab);
+            if (ketab.getName().equals(books.get(i).getName()) && ketab.getAuthor().equals(books.get(i).getAuthor()) && ketab.getAvailable()==true)
+            {
+                return ketab.getISBN();
+            }
         }
-        else
-        {
-            System.out.println("This book does not exist!");
-        }
+        return "";
     }
 
     public void updateBook(Book ketab){
@@ -89,12 +95,16 @@ public class Library {
         return existence;
     }
 
-    public void increaseBook(){
+    public void increaseBook(Book ketab){
         //TODO
+        int number = numberOfBooks.get(ketab.getName()) + 1;
+        numberOfBooks.put(ketab.getName(), number);
     }
 
-    public void decreaseBook(){
+    public void decreaseBook(Book ketab){
         //TODO
+        int number = numberOfBooks.get(ketab.getName()) - 1;
+        numberOfBooks.put(ketab.getName(), number);
     }
 
     //user related functions
@@ -136,6 +146,7 @@ public class Library {
 
     public void updateUser(User karbar){
         //TODO
+        Scanner input = new Scanner(System.in);
         if (doesUserExist(karbar))
         {
             karbar.changePassword();
@@ -158,6 +169,28 @@ public class Library {
             }
         }
         return existence;
+    }
+
+    public Boolean userPasswordCheck(User karbar)
+    {
+        Boolean passCheck = false;
+        for (int i=0; i<users.size(); i++)
+        {
+            if (karbar.getUsername().equals(users.get(i).getUsername()))
+            {
+                if (karbar.getPassword().equals(users.get(i).getPassword()))
+                {
+                    passCheck = true;
+                    break;
+                }
+                else
+                {
+                    passCheck = false;
+                    break;
+                }
+            }
+        }
+        return passCheck;
     }
 
     //librarian related functions
@@ -223,6 +256,26 @@ public class Library {
         }
         return existence;
     }
-
+    public Boolean librarianPasswordCheck(Librarian ketabdar)
+    {
+        Boolean passCheck = false;
+        for (int i=0; i<librarians.size(); i++)
+        {
+            if (ketabdar.getUsername().equals(librarians.get(i).getUsername()))
+            {
+                if (ketabdar.getPassword().equals(librarians.get(i).getPassword()))
+                {
+                    passCheck = true;
+                    break;
+                }
+                else
+                {
+                    passCheck = false;
+                    break;
+                }
+            }
+        }
+        return passCheck;
+    }
 
 }

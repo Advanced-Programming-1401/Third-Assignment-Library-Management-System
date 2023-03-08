@@ -11,11 +11,11 @@ public class User {
     private String username;
     private String password;
 
-    public User(String username, String password)
+    /* public User(String username, String password)
     {
         this.username = username;
         this.password = password;
-    }
+    }*/
 
     public String getUsername() {
         return username;
@@ -59,6 +59,7 @@ public class User {
             {
                 rentBooks.add(ketab);
                 ketabkhune.updateBook(ketab);
+                ketabkhune.decreaseBook(ketab);
             }
             else
             {
@@ -69,6 +70,17 @@ public class User {
         {
             System.out.println("This book does not exist!");
         }
+    }
+    public String searchRentBook(Book ketab){
+        //TODO
+        for (int i=0; i<rentBooks.size(); i++)
+        {
+            if (ketab.getName().equals(rentBooks.get(i).getName()) && ketab.getAuthor().equals(rentBooks.get(i).getAuthor()))
+            {
+                return ketab.getISBN();
+            }
+        }
+        return "";
     }
 
     public void returnBook(Library ketabkhune , Book ketab){
@@ -82,6 +94,7 @@ public class User {
             }
         }
         ketabkhune.updateBook(ketab);
+        ketabkhune.increaseBook(ketab);
     }
 
     public String toString()

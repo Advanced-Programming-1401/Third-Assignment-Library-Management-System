@@ -5,13 +5,13 @@ public class Book {
     private int yearOfPublish;
     private String ISBN;
     private Boolean isAvailable = true;
-    public Book(String name, String author, int yearOfPublish, String ISBN)
+    /* public Book(String name, String author, int yearOfPublish, String ISBN)
     {
         this.name = name;
         this.author = author;
         this.yearOfPublish = yearOfPublish;
         this.ISBN = ISBN;
-    }
+    }*/
 
     public String getName() {
         return name;
