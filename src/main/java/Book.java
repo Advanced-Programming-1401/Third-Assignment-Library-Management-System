@@ -1,25 +1,23 @@
 import java.util.ArrayList;
-
 public class Book  {
     //Book should contain name,author,year of publish and ISBN
 
-       private int YearPublish, ISBN ;
-       private String name,author;
-       public boolean borrowed;
-       public Book(){
-           name ="";
-           author="";
-           YearPublish = 0;
-           ISBN = 0;
+    private int YearPublish, ISBN ;
+    private String name,author;
+    public boolean borrowed;
+    public Book(){
+        name ="";
+        author="";
+        YearPublish = 0;
+        ISBN = 0;
+    }
+    public Book(String name,String author,int ISBN,int YearPublish){
 
-       }
-       public Book(String name,String author,int ISBN,int YearPublish){
-
-           this.name = name;
-           this.author = author;
-           this.YearPublish = YearPublish;
-           this.ISBN = ISBN;
-       }
+        this.name = name;
+        this.author = author;
+        this.YearPublish = YearPublish;
+        this.ISBN = ISBN;
+    }
 
     public String getName() {
         return name;
