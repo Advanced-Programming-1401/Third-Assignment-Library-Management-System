@@ -1,6 +1,17 @@
+import java.util.ArrayList;
+
 public class User {
     //User should have a list of books
     //User should have a username and a password
+
+    ArrayList<Book> rentedBooks = new ArrayList<Book>();
+    private String username;
+    private String password;
+
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
 
     public void rentBook(){
         //TODO

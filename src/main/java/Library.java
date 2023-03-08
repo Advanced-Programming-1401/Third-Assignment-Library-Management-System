@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Library {
     /*
     * The library should have a list of books.
@@ -6,14 +10,42 @@ public class Library {
     * The library should have a list of users and a list of librarians.
      */
 
-    //book related functions
+    private String libraryName;
 
-    public void addBook(){
-        //TODO
+    //book
+    ArrayList<String> ExistedBooks = new ArrayList<String>();
+    Map<String, Integer> NumberOfBooks = new HashMap<String, Integer>();
+
+    //librarian  user
+    ArrayList<User> Users = new ArrayList<User>();
+    ArrayList<Librarian> Librarians = new ArrayList<Librarian>();
+    Map<String, String> users = new HashMap<String, String>();
+    Map<String, String> librarians = new HashMap<String, String>();
+
+    public Library(String libraryName) {
+        this.libraryName = libraryName;
     }
 
-    public void removeBook(){
-        //TODO
+    //book related functions
+
+    public void addBook(Book book){
+        ExistedBooks.add(book.getNameOfBook());
+        NumberOfBooks.put(book.getNameOfBook(), book.getNumberOfBook());
+    }
+
+    public void removeBook(Book book){
+
+    }
+
+    public boolean doesBookExist(String bookName) {
+        for (String element : ExistedBooks) {
+            if (element.contains(bookName)) {
+                return true;
+            } else {
+                System.out.println("This book doesn't exist!");
+            }
+        }
+        return false;
     }
 
     public void searchBook(){
@@ -21,10 +53,6 @@ public class Library {
     }
 
     public void updateBook(){
-        //TODO
-    }
-
-    public void doesBookExist(){
         //TODO
     }
 
@@ -46,15 +74,15 @@ public class Library {
         //TODO
     }
 
+    public void doesUserExist(){
+        //TODO
+    }
+
     public void searchUser(){
         //TODO
     }
 
     public void updateUser(){
-        //TODO
-    }
-
-    public void doesUserExist(){
         //TODO
     }
 
@@ -68,6 +96,10 @@ public class Library {
         //TODO
     }
 
+    public void doesLibrarianExist(){
+        //TODO
+    }
+
     public void searchLibrarian(){
         //TODO
     }
@@ -75,10 +107,4 @@ public class Library {
     public void updateLibrarian(){
         //TODO
     }
-
-    public void doesLibrarianExist(){
-        //TODO
-    }
-
-
 }
