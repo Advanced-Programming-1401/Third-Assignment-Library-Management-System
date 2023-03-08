@@ -6,7 +6,7 @@ public class Librarian  {
      */
     private String username;
     private String password;
-    public Librarian(){
+    public Librarian(){//default
 
         username = "Comody";
         password ="LibraryGZ2004";

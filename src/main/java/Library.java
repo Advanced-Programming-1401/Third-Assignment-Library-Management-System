@@ -25,12 +25,6 @@ public class Library {
 
     }
 
-/*
-    HashMap<String, Book> directory = new HashMap<>();
-      directory.put(book1.getName(), book1);
-      directory.put(book2.getName(), book2);
-*/
-
     //book related functions
     public void addBook(String name , String Author, int YearPublish , int ISBN ){
         Book book = new Book(name,Author,YearPublish,ISBN);
@@ -42,16 +36,15 @@ public class Library {
 
 
     public void removeBook(String name , String Author, int YearPublish ,int ISBN){
-        Book bookToRemove = null;
-        // Search for book with matching attributes
+        Book books = null;
         for (Book book : BookList) {
             if (book.getName().equals(name) && book.getAuthor().equals(Author) && book.getYearPublish() == (YearPublish) && book.getISBN() == (ISBN)) {
-                bookToRemove = book;
+                book = book;
                 break;
             }
         }
-        if (bookToRemove != null) {
-            BookList.remove(bookToRemove);
+        if (books != null) {
+            BookList.remove(books);
             return;
         }
         return;
@@ -123,10 +116,17 @@ public class Library {
     }
 
     public void removeUser(String username ,String password){
-        User user = new User(username ,password);
-        UserList.remove(user.getUsername());
-        UserList.remove(user.getPassword());
-    }
+        User userToRemove = null;
+        // Search for book with matching attributes
+        for (User user : UserList) {
+            if (user.getUsername().equals(username) && user.getUsername().equals(password)) {
+                userToRemove = user;
+                break;
+            }
+        }
+        UserList.remove(userToRemove);
+        return;
+        }
 
     public User searchUser(){
 
@@ -179,8 +179,15 @@ public class Library {
     }
 
     public void removeLibrarian(String username , String password){
-        Librarian librarian = new Librarian(username ,password);
-        LibrarianList.remove(librarian);
+        Librarian librarians = null;
+        for (Librarian librarian : LibrarianList) {
+            if (librarian.getUsername().equals(username) && librarian.getUsername().equals(password)) {
+                librarians = librarian;
+                break;
+            }
+        }
+        UserList.remove(librarians);
+        return;
     }
 
     public Librarian searchLibrarian(){

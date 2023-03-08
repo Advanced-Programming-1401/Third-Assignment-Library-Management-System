@@ -12,4 +12,5 @@ Although users can rent and return books.
 Finally, there are some functions in the Librarian class that are shared with the Book and User classes, such as the ability to search for a book or view a list of borrowed books.
 
 ## Conclusion
-If you want to revise it or make it better, you can create a GUI for the program. and you can contain other condition that I didn't consider.for example date of returning book and  you can make  different between sign up and login 
+If you want to revise it or make it better, you can create a GUI for the program. and you can contain other condition that I didn't consider.
+For example date of returning book, you can make  different between sign up and login.
