@@ -33,10 +33,8 @@ public class Main {
             if(choice == 1){
                     System.out.println("Username: ");
                     String username = sc.next();
-                    System.out.println(username);
                     System.out.println("Password: ");
                     String password = sc.next();
-                    System.out.println(password);
                     User newUser = new User(username, password);
                     if(library.doesUserExist(newUser)){
                         library.loginUser(newUser);
@@ -47,10 +45,8 @@ public class Main {
             else if(choice == 2){
                     System.out.println("Username: ");
                     String username = sc.next();
-                    System.out.println(username);
                     System.out.println("Password: ");
                     String password = sc.next();
-                    System.out.println(password);
                     Librarian newLibrarian = new Librarian(username, password);
                     if(library.doesLibrarianExist(newLibrarian)){
                         library.loginLibrarian(newLibrarian);
@@ -75,9 +71,13 @@ public class Main {
                 System.out.println("1.Rent Book 2.Return Book 3.Exit");
                 option = sc.nextInt();
                 if (option == 1) {
-                    //call rent function
+                    System.out.println("Book name: ");
+                    String bookName = sc.next();
+                    library.rentBook(bookName);
                 } else if (option == 2) {
-                    //call return function
+                    System.out.println("Book name: ");
+                    String bookName = sc.next();
+                    library.returnBook(bookName);
                 } else {
                     break;
                 }

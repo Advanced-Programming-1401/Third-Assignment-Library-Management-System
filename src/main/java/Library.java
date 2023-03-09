@@ -72,6 +72,9 @@ public class Library {
     public Map<String, String> getusers() {
         return users;
     }
+
+    ArrayList<String> rentedBooks = firstUser.getRentedBooks();
+
     //book related functions
 
     public void addBook(Book book){
@@ -90,12 +93,10 @@ public class Library {
     }
 
     public boolean doesBookExist(String bookName) {
-        for (String element : ExistedBooks) {
-            if (element.contains(bookName)) {
-                return true;
-            } else {
-                System.out.println("This book doesn't exist!");
-            }
+        if(NumberOfBooks.containsKey(bookName) && NumberOfBooks.get(bookName) != 0){
+            return true;
+        } else {
+            System.out.println("No book in the list!");
         }
         return false;
     }
@@ -106,6 +107,20 @@ public class Library {
         } else {
             System.out.println("No book with name " + bookName);
         }
+    }
+
+    public void rentBook(String book){
+        if(doesBookExist(book)){
+            NumberOfBooks.put(book, NumberOfBooks.get(book) - 1);
+            firstUser.rentBook(book);
+        } else {
+            System.out.println("Number of this book = 0");
+        }
+    }
+
+    public void returnBook(String book){
+        NumberOfBooks.put(book, NumberOfBooks.get(book) + 1);
+        firstUser.returnBook(book);
     }
 
     //user related functions
