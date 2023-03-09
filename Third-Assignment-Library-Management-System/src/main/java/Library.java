@@ -68,7 +68,7 @@ public class Library {
 
         System.out.println("SEARCH BY SERIAL NUMBER");
 
-        int ISBN;
+         int ISBN;
 
         System.out.println("Enter ISBN of Book:");
 
@@ -229,3 +229,4 @@ public class Library {
         }
     }
 }
+
