@@ -8,7 +8,7 @@ public class Main
     * don't forget to add at least 1 librarian to the library to make it functionable.
     * *  *** don't limit yourself to our template ***
      */
-
+    static Scanner input = new Scanner(System.in);
     public static void main(String[] args)
     {
         Book ketab = new Book();
@@ -22,21 +22,21 @@ public class Main
     {
         //TODO:
 
-        Scanner in = new Scanner(System.in);
+        //Scanner in = new Scanner(System.in);
 
         System.out.println("Welcome to the library!");
         System.out.println("1.Users");
         System.out.println("2.Librarians");
         System.out.println("Enter your command");
         System.out.println("command : ");
-        int command = Integer.parseInt(in.nextLine());
+        int command = Integer.parseInt(input.nextLine());
         if (command == 1)
         {
             System.out.println("1.Sign Up");
             System.out.println("2.Sign In");
             System.out.println("Enter your command");
             System.out.println("command : ");
-            command = Integer.parseInt(in.nextLine());
+            command = Integer.parseInt(input.nextLine());
             if (command == 1)
             {
                 signUpUser(ketabkhune , ketabdar , karbar , ketab);
@@ -52,7 +52,7 @@ public class Main
             System.out.println("1.Sign Up");
             System.out.println("2.Sign In");
             System.out.println("Enter your command");
-            command = Integer.parseInt(in.nextLine());
+            command = Integer.parseInt(input.nextLine());
             if (command == 1)
             {
                signUpLibrarian(ketabkhune , ketabdar , karbar , ketab);
@@ -67,7 +67,7 @@ public class Main
 
     public static void signUpUser(Library ketabkhune , Librarian ketabdar , User karbar , Book ketab)
     {
-        Scanner input = new Scanner(System.in);
+        // input = new Scanner(System.in);
         System.out.println("Enter your username");
         System.out.println("Username : ");
         String username = input.nextLine();
@@ -101,7 +101,7 @@ public class Main
 
     public static void signInUser(Library ketabkhune , Librarian ketabdar , User karbar , Book ketab)
     {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         System.out.println("Enter your username");
         System.out.println("Username : ");
         String username = input.nextLine();
@@ -131,7 +131,7 @@ public class Main
 
     public static void signUpLibrarian(Library ketabkhune , Librarian ketabdar , User karbar , Book ketab)
     {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         System.out.println("Enter your username");
         System.out.println("Username : ");
         String username = input.nextLine();
@@ -165,7 +165,7 @@ public class Main
 
     public static void  signInLibrarian(Library ketabkhune , Librarian ketabdar , User karbar , Book ketab)
     {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         System.out.println("Enter your username");
         System.out.println("Username : ");
         String username = input.nextLine();
@@ -195,7 +195,7 @@ public class Main
 
     public static void borrowBook(Library ketabkhune , User karbar , Book ketab)
     {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         System.out.println("Enter the book's name ");
         System.out.println("Name : ");
         String name = input.nextLine();
@@ -218,7 +218,7 @@ public class Main
 
     public static void returnBook(Library ketabkhune , User karbar , Book ketab)
     {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         System.out.println("Enter the book's name ");
         System.out.println("Name : ");
         String name = input.nextLine();
@@ -247,7 +247,7 @@ public class Main
 
     public static void userMenu(Library ketabkhune, User karbar, Book ketab , Librarian ketabdar)
     {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         System.out.println("1.Borrow book");
         System.out.println("2.Return book");
         System.out.println("3.Update User");
@@ -279,7 +279,7 @@ public class Main
 
     public static void librarianMenu(Library ketabkhune, User karbar, Book ketab, Librarian ketabdar)
     {
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         // Books
         System.out.println("1.Add book");
         System.out.println("2.Remove book");
