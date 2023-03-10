@@ -44,18 +44,18 @@ public class User {
         this.userBooks = userBooks;
     }
 
-    public boolean areMatched(String first, String second) {
-        if (first.equals(second)) {
-            return true;
-        }
-        return false;
-    }
+    // public boolean areMatched(String first, String second) {
+    //     if (first.equals(second)) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
-    public boolean userIsAuthenticated(String username, String password) {
-        if (areMatched(username,this.username)  && areMatched(password,this.password))
-            return true;
-        return false;
-    }
+    // public boolean userIsAuthenticated(String username, String password) {
+    //     if (areMatched(username,this.username)  && areMatched(password,this.password))
+    //         return true;
+    //     return false;
+    // }
     public void rentBook(Book book){
         if (doesRentedBookExist(book.getISBN())){
             JOptionPane.showMessageDialog(null,"The book " + book.getName() + " already exists.");
@@ -85,7 +85,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "Hello, it's " + this.getUsername() + "!";
+        return "Hello, it's " + this.getUsername() + "!" + "\nThe Password: " + this.getPassword();
     }
 
 }

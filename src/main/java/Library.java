@@ -218,6 +218,24 @@ public class Library {
         return false;
     }
 
+    public boolean areMatched(String first, String second) {
+        if (first.equals(second)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean userIsAuthenticated(String username, String password) {
+        if (doesUserExist(username)) {
+            for (User user : users) {
+                if (areMatched(user.getUsername(), username) && areMatched(user.getPassword(), password)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     //librarian related functions
 
     public void addLibrarian(Librarian librarian){
@@ -276,4 +294,16 @@ public class Library {
         return false;
     }
 
+    public boolean librarianIsAuthenticated(String username, String password) {
+        if (doesLibrarianExist(username)) {
+            for (Librarian librarian : librarians) {
+                if (areMatched(librarian.getUsername(), username) && areMatched(librarian.getPassword(), password)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }
+
