@@ -1,12 +1,9 @@
-import java.util.Scanner;
 import javax.swing.*;
 
 public class Main {
     static Library library = new Library();
     static User user = new User();
     static Librarian librarian = new Librarian();
-
-    //static User user = new User();
 
     /*
     * make a functional library app using oop
@@ -16,68 +13,49 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        //System.out.println(displayLibrarianMenu_Book());
         runMenu();
     }
 
     public static void runMenu(){
         while (true) {
-        //Scanner sc = new Scanner(System.in);
-        //System.out.println("Hello! Please enter your name.");
-        String firstName = JOptionPane.showInputDialog(null,"Hello! Please enter your name.");
-        String firstChosenOption = JOptionPane.showInputDialog(null,"Welcome to the library, dear " + firstName + "!\n" + printChooseAnOption() + "\n" + displayFirstOption());
-        switch (firstChosenOption) {
-            case "1": // Sign Up as a New User
-                String signUpChosenOption = JOptionPane.showInputDialog(null, printChooseAnOption() + "\n" + displaySignUpMenu());
-                switch (signUpChosenOption) {
-                    case "1": // Sign Up as a User
-                        newUserSignUp();
-                        LoginAsAUser();
-                        break;
-                    case "2": // Sign Up as a Librarian
-                        newLibrarianSignUp();
-                        LoginAsALibrarian();
-                        break;
-                
-                    default:
-                        runMenu();
-                        break;
-                }
+            String firstName = JOptionPane.showInputDialog(null,"Hello! Please enter your name.");
+            String firstChosenOption = JOptionPane.showInputDialog(null,"Welcome to the library, dear " + firstName + "!\n" + printChooseAnOption() + "\n" + displayFirstOption());
+            switch (firstChosenOption) {
+                case "1": // Sign Up as a New User
+                    String signUpChosenOption = JOptionPane.showInputDialog(null, printChooseAnOption() + "\n" + displaySignUpMenu());
+                    switch (signUpChosenOption) {
+                        case "1": // Sign Up as a User
+                            newUserSignUp();
+                            LoginAsAUser();
+                            break;
+                        case "2": // Sign Up as a Librarian
+                            newLibrarianSignUp();
+                            LoginAsALibrarian();
+                            break;
+                        default:
+                            runMenu();
+                            break;
+                    }
+                    break;
+                case "2": // Already Have an Account? Let's Login.
+                    String loginChosenOption = JOptionPane.showInputDialog(null, printChooseAnOption() + "\n" + displayLoginMenu());
+                    switch (loginChosenOption) {
+                        case "1": // Login as a user
+                            LoginAsAUser();
+                            break;
+                        case "2": // Login as a Librarian
+                            LoginAsALibrarian();
+                            break;
+                        default:
+                            runMenu();
+                            break;
+                    }
+                    break;
+                default:
+                    runMenu();
+                    break;
+            }
 
-                break;
-
-            case "2": // Already Have an Account? Let's Login.
-                String loginChosenOption = JOptionPane.showInputDialog(null, printChooseAnOption() + "\n" + displayLoginMenu());
-                switch (loginChosenOption) {
-                    case "1": // Login as a user
-                        LoginAsAUser();
-                        break;
-
-                    case "2": // Login as a Librarian
-                        LoginAsALibrarian();
-                        break;
-                
-                    default:
-                        runMenu();
-                        break;
-                }
-                break;
-            default:
-                runMenu();
-                break;
-        }
-
-        //String firstName = sc.nextLine();
-        //System.out.println("Welcome to the library, dear " + firstName + "!\n" + printChooseAnOption() + "\n" + displayLoginMenu());
-        // if (loginChosenOption.equals("1")) {
-        //     newUserSignUp();
-        // }
-        //JOptionPane.showMessageDialog(null, "meow");
-        //System.out.println(loginChosenOption);
-        for (int i = 0; i < library.getUsers().size(); i++) {
-            System.out.println(library.getUsers().get(i));
-        }
-        //sc.close();
         }
     }
 
@@ -97,8 +75,7 @@ public class Main {
         return "1: Borrow a Book\n2: Return a Book";
     }
     public static String displayLibrarianMenu_Book() {
-        //System.out.println(displayUserMenu());
-        return displayUserMenu() + "3: Add a Book\n4: Remove a Book\n5: Search a Book\n6: Update a Book";
+        return displayUserMenu() + "\n3: Add a Book\n4: Remove a Book\n5: Search a Book\n6: Update a Book";
     }
     public static String displayLibrarianMenu_User() {
         return "1: Add a User\n2: Remove a User\n3: Search a User\n4: Update a User";
@@ -111,7 +88,6 @@ public class Main {
         String password = JOptionPane.showInputDialog(null, "Let's create a password: ");
         User newUser =new User(username,password);
         library.addUser(newUser);
-
     }
 
     public static void newLibrarianSignUp() {
@@ -119,7 +95,6 @@ public class Main {
         String password = JOptionPane.showInputDialog(null, "Let's create a password: ");
         Librarian newUser =new Librarian(username,password);
         library.addLibrarian(newUser);
-
     }
 
     public static void LoginAsALibrarian() {
@@ -133,7 +108,6 @@ public class Main {
                         String librarianUserMenuOption = JOptionPane.showInputDialog(null, "*USER MENU OPTIONS*\n" + displayLibrarianMenu_User());
                         switch (librarianUserMenuOption) {
                             case "1": // Add a User
-                                //library.addUser(user);
                                 newUserSignUp();
                                 break;
                             case "2": // Remove a User
@@ -146,11 +120,11 @@ public class Main {
                                 User searchedUser = library.searchUser(searchUserViaUsername);
                                 JOptionPane.showMessageDialog(null, searchedUser);
                                 break;
-                            case "4": // Update a Book
+                            case "4": // Update a User
                                 String update_searchUserViaUsername = JOptionPane.showInputDialog(null, "Enter the username you want to update: ");
                                 User updatedUser = library.searchUser(update_searchUserViaUsername);
                                 String newPassword = JOptionPane.showInputDialog(null, "Enter the new password: ");
-                                library.updateUser(updatedUser.getUsername(), updatedUser.getPassword(), newPassword); //////////////////////////////////////////////////////////////////////////
+                                library.updateUser(updatedUser.getUsername(), updatedUser.getPassword(), newPassword);
                                 break;
                             default:
                                 runMenu();
@@ -159,11 +133,8 @@ public class Main {
                         break;
                     case "2": // Librarian Menu Options
                         String librarianLibrarianMenuOption = JOptionPane.showInputDialog(null, "*LIBRARIAN MENU OPTIONS*\n" + displayLibrarianMenu_Librarian());
-                        //String librarianUserMenuOption = JOptionPane.showInputDialog(null, "*USER MENU OPTIONS*\n" + displayLibrarianMenu_User());
                         switch (librarianLibrarianMenuOption) {
                             case "1": // Add a Librarian
-                                //library.addUser(user);
-                                //newUserSignUp();
                                 newLibrarianSignUp();
                                 break;
                             case "2": // Remove a Librarian
@@ -187,26 +158,26 @@ public class Main {
                                 break;
                         }
                         break;
-
                     case "3": // Book Menu Options
                         String librarianBookMenuOption = JOptionPane.showInputDialog(null, "*BOOK MENU OPTIONS*\n" + displayLibrarianMenu_Book());
                         switch (librarianBookMenuOption) {
                             case "1": // Borrow a Book
                                 String rent_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to rent: ");
                                 Book rentBook = library.searchBook(rent_searchViaISBN);
-                                //user.rentBook(rentBook);
                                 librarian.rentBook(rentBook);
                                 break;
                             case "2": // Return a Book
                                 String return_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to return: ");
                                 Book returnBook = library.searchBook(return_searchViaISBN);
-                                //user.returnBook(returnBook);
-                                librarian.rentBook(returnBook);
+                                librarian.returnBook(returnBook);
                                 break;
                             case "3": // Add a Book
-                                String add_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to add: ");
-                                Book addBook = library.searchBook(add_searchViaISBN);
-                                library.addBook(addBook);
+                                String add_bookName = JOptionPane.showInputDialog(null, "Enter the name of the book you want to add: ");
+                                String add_bookAuthor = JOptionPane.showInputDialog(null, "Enter the author of the book you want to add: ");
+                                String add_bookYearOfPublish = JOptionPane.showInputDialog(null, "Enter the publish year of the book you want to add: ");
+                                String add_bookISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to add: ");
+                                Book newBook = new Book(add_bookName, add_bookAuthor, Integer.parseInt(add_bookYearOfPublish), add_bookISBN);
+                                library.addBook(newBook);
                                 break;
                             case "4": // Remove a Book
                                 String remove_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to remove: ");
@@ -220,46 +191,39 @@ public class Main {
                                 break;
                             case "6": // Update a Book
                                 String update_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to update: ");
-                                //String update_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to update: ");
-                                //////////////////////////////////////
-                                // Book addBook = library.searchBook(add_searchViaISBN);
-                                // library.addBook(addBook);
+                                String newBookName = JOptionPane.showInputDialog(null, "Enter the new name of the book you want to update: ");
+                                String newBookAuthor = JOptionPane.showInputDialog(null, "Enter the new author of the book you want to update: ");
+                                String newBookYearOfPublish = JOptionPane.showInputDialog(null, "Enter the new publish year of the book you want to update: ");
+                                library.updateBook(update_searchViaISBN, newBookName, newBookAuthor, Integer.parseInt(newBookYearOfPublish));
                                 break;
                             default:
                                 break;
-                        
-                        
                         }
                         break;
-                
                     default:
                         runMenu();
                         break;
                 }
 
                 String librarianMenuOption = JOptionPane.showInputDialog(null, "Welcome to your page dear " + username + "!" + "\nWhat would you like to do?\n" + displayUserMenu());
-                switch (librarianMenuOption) {    //////////////////////////////////////////////////////// user/book/librarian field //////////////////////////////////////////////////////////////////////////////////////////
+                switch (librarianMenuOption) {   
                     case "1": // Borrow a Book
                         String rent_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to rent: ");
                         Book rentBook = library.searchBook(rent_searchViaISBN);
                         user.rentBook(rentBook);
-
                         break;
                     case "2": // Return a Book
                         String return_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to return: ");
                         Book returnBook = library.searchBook(return_searchViaISBN);
                         user.returnBook(returnBook);
                         break;
-                
                     default:
                         runMenu();
                         break;
                 }
-
             } else {
                 JOptionPane.showMessageDialog(null, "The username & password you entered do not match. Please try again: ");
                 LoginAsAUser();
-                
             }
         } else {
             String wrongUsername = JOptionPane.showInputDialog(null, "This username doesn't exist. Do you want to Sign up as a new user?\n1: Yes, let's create a new account\n2: No, let's try again.");
@@ -275,9 +239,7 @@ public class Main {
                     runMenu();
                     break;
             }
-
         }
-
     }
 
     public static void LoginAsAUser() {
@@ -291,23 +253,19 @@ public class Main {
                         String rent_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to rent: ");
                         Book rentBook = library.searchBook(rent_searchViaISBN);
                         user.rentBook(rentBook);
-
                         break;
                     case "2": // Return a Book
                         String return_searchViaISBN = JOptionPane.showInputDialog(null, "Enter the ISBN of the book you want to return: ");
                         Book returnBook = library.searchBook(return_searchViaISBN);
                         user.returnBook(returnBook);
                         break;
-                
                     default:
                         runMenu();
                         break;
                 }
-
             } else {
                 JOptionPane.showMessageDialog(null, "The username & password you entered do not match. Please try again: ");
                 LoginAsAUser();
-                
             }
         } else {
             String wrongUsername = JOptionPane.showInputDialog(null, "This username doesn't exist. Do you want to Sign up as a new user?\n1: Yes, let's create a new account\n2: No, let's try again.");
@@ -318,14 +276,10 @@ public class Main {
                 case "2":
                     LoginAsAUser();
                     break;
-            
                 default:
                     runMenu();
                     break;
             }
-
         }
-
     }
-    
 }

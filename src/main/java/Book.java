@@ -5,23 +5,11 @@ public class Book {
     private int yearOfPublish;
     private String ISBN;
 
-    private int amountOfBook = 0;
-
-    public int getAmountOfBook() {
-        return amountOfBook;
-    }
-
-    public void setAmountOfBook(int amountOfBook) {
-        this.amountOfBook = amountOfBook;
-    }
-
     public Book(String name, String author, int yearOfPublish, String ISBN) {
         this.name = name;
         this.author = author;
         this.yearOfPublish = yearOfPublish;
         this.ISBN = ISBN;
-
-        this.amountOfBook++;
     }
 
     public String getName() {
@@ -60,6 +48,5 @@ public class Book {
     public String toString() {
         return "Here is the information of " + this.getName() + "book:\nThe Book's Name: " + getName() + "\nThe Author's Name: " + getAuthor() + "\nThe Book's Year of Publish: " + getYearOfPublish() + "\nThe Book's ISBN: " + getISBN();
     }
-
 
 }

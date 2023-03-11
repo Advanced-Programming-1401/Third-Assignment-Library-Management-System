@@ -14,10 +14,4 @@ public class Librarian extends User {
         super(username, password);
     }
 
-    // @Override
-    // public String toString() {
-    //     super.toString();
-    // }
-
-
 }
