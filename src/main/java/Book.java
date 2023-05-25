@@ -1,39 +1,63 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Collection;
+public class Book {
+    //Book should contain name,author,year of publish and ISBN
+    private String name;
+    private String author;
+    private String year;
+    private String isbn;
+    private boolean avaliable = true;
 
-public class Book implements ActionListener {
-    String name;
-    int ISBN;
-    String author;
-    int year;
-    int counter;
-    Book(){
-        name = "default name";
-        ISBN = 1234;
-        author = "me";
-        year = 1234;
-        counter = 100;
+    public boolean isAvaliable() {
+        return avaliable;
     }
-    Book(String name , int ISBN , String author , int year , int counter){
+
+    public void setAvaliable(boolean avaliable) {
+        this.avaliable = avaliable;
+    }
+
+    public void setName(String name) {
         this.name = name;
-        this.ISBN = ISBN;
-        this.author = author;
-        this.year = year;
-        this.counter = counter;
     }
-    static Book book1 = new Book("PERKS OF BEING A WALLFLOWER",1234567,"STEPHEN CHOBUSKY",1991,5);
-    static Book book2 = new Book("ANOTHER LIFE ",89101112,"ALBERTO MORAVIA",1990,7);
-    static Book book3 = new Book("HONDA",13141516,"ROBERT EL SHOOK",1962,3);
-    static Book book4 = new Book("PAINTING",17181920,"ZHOZE SARAMAGO",1989,6);
-    static Book book5 = new Book("NUDGE",21222324,"RICHARD TAYLOR",2017,4);
-    public Book(Book book6) {
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public String toString() {
+        return "Book{" +
+                "name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                ", year='" + year + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", avaliable=" + avaliable +
+                '}';
     }
 
+    public void changeStatus(){
+        this.avaliable = !this.avaliable;
+    }
 }
